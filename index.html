@@ -118,7 +118,7 @@
                     document.getElementById('dynamic-content-title').innerText = data.dynamicContentTitle;
 
                     const content = `<p class="body">${data.body.replace(/\n/g, '<br>')}</p>`;
-                    document.getElementById('content').innerHTML += content;
+                    document.getElementById('content').innerHTML = content;
                 })
                 .catch(error => {
                     console.error('Error loading language file:', error);
