@@ -58,9 +58,9 @@
 </head>
 <body>
     <div class="header">
-        <h1><a href="#" id="site-title">MKCloud</a></h1>
+        <h1><a href="https://kelvinchan1996.github.io/mkcloud.github.io/" id="site-title">MKCloud</a></h1>
         <div class="header-links">
-            <a href="#" id="home-link">Home</a>
+            <a href="https://kelvinchan1996.github.io/mkcloud.github.io/" id="home-link">Home</a>
             <a href="#" id="info-link">Information</a>
             <a href="#" id="contact-link">Contact Us</a>
             <a href="#" id="settings-link">Settings</a>
@@ -141,12 +141,12 @@
 
             document.getElementById('login-link').addEventListener('click', function(event) {
                 event.preventDefault();
-                showForm('login-form');
+                window.location.href = 'login.html'; // 导航到登录页面
             });
 
             document.getElementById('signup-link').addEventListener('click', function(event) {
                 event.preventDefault();
-                showForm('signup-form');
+                window.location.href = 'signup.html'; // 导航到注册页面
             });
 
             document.getElementById('language').addEventListener('change', setLanguage);
