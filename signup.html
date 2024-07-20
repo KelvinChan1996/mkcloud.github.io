@@ -3,186 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup - MKCloud</title>
+    <title>Sign Up - MKCloud</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .header {
             width: 100%;
-            padding: 10px;
-            background: #333;
+            background-color: #333;
             color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
             position: fixed;
             top: 0;
             left: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
         }
         .header h1 {
             margin: 0;
             font-size: 24px;
         }
-        .header h1 a {
-            color: white;
-            text-decoration: none;
-        }
-        .header .header-links {
-            display: flex;
-            gap: 20px;
-        }
-        .header .header-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        .header .header-links a:hover {
-            text-decoration: underline;
-        }
-        .signup-container {
-            width: 600px;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin: 100px auto 0;
-            position: relative;
-        }
-        .signup-header {
-            margin-bottom: 20px;
-        }
-        .signup-header h2 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .signup-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            text-align: left;
-            margin-top: 20px;
-        }
-        .signup-form label {
-            font-size: 14px;
-            margin-bottom: 5px;
-            display: block;
-        }
-        .signup-form input, .signup-form select {
+        .content {
+            margin-top: 80px; /* Adjusted for the fixed header */
             width: 100%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-container label {
+            margin: 5px 0 2px;
+            font-weight: bold;
+        }
+        .form-container input {
+            margin-bottom: 15px;
             padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            font-size: 16px;
+            width: 100%;
             box-sizing: border-box;
         }
-        .signup-form button {
-            grid-column: span 2;
+        .form-container button {
             padding: 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #333;
+            font-size: 16px;
+            background-color: #007bff;
             color: white;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
         }
-        .signup-form button:hover {
-            background-color: #555;
+        .form-container button:hover {
+            background-color: #0056b3;
         }
-        .signup-form .link {
-            grid-column: span 2;
-            display: block;
-            margin-top: 10px;
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-footer a {
+            color: #007bff;
             text-decoration: none;
-            color: #333;
-            font-size: 16px;
         }
-        .signup-form .link:hover {
+        .form-footer a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1><a href="index.html" id="site-title">MKCloud</a></h1>
-        <div class="header-links">
-            <a href="index.html">Home</a>
-            <a href="info.html">Information</a>
-            <a href="contact.html">Contact Us</a>
-            <a href="settings.html">Settings</a>
-            <a href="login.html">Login</a>
+        <h1>MKCloud</h1>
+    </div>
+
+    <div class="content">
+        <h2>Sign Up</h2>
+        <div class="form-container">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" placeholder="First Name">
+
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" placeholder="Last Name">
+
+            <label for="username">User Name:</label>
+            <input type="text" id="username" placeholder="User Name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Email">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Password">
+
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" placeholder="Confirm Password">
+
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" placeholder="Phone">
+
+            <label for="street1">Street 1:</label>
+            <input type="text" id="street1" placeholder="Street 1">
+
+            <label for="street2">Street 2:</label>
+            <input type="text" id="street2" placeholder="Street 2">
+
+            <label for="post-code">Post Code:</label>
+            <input type="text" id="post-code" placeholder="Post Code">
+
+            <label for="city">City:</label>
+            <input type="text" id="city" placeholder="City">
+
+            <label for="state">State:</label>
+            <input type="text" id="state" placeholder="State">
+
+            <label for="country">Country:</label>
+            <select id="country">
+                <option value="">Select Country</option>
+                <!-- Add more country options here -->
+            </select>
+
+            <button type="button" onclick="signup()">Sign Up</button>
+        </div>
+
+        <div class="form-footer">
+            <a href="login.html">Sign In</a>
         </div>
     </div>
-    <div class="signup-container" role="main" aria-labelledby="signup-title">
-        <div class="signup-header">
-            <h2 id="signup-title">Sign Up</h2>
-        </div>
-        <form class="signup-form" aria-labelledby="signup-title">
-            <div>
-                <label for="signup-first-name">First Name:</label>
-                <input type="text" id="signup-first-name" aria-label="First Name" placeholder="First Name" required>
-            </div>
-            <div>
-                <label for="signup-last-name">Last Name:</label>
-                <input type="text" id="signup-last-name" aria-label="Last Name" placeholder="Last Name" required>
-            </div>
-            <div>
-                <label for="signup-username">User Name:</label>
-                <input type="text" id="signup-username" aria-label="User Name" placeholder="User Name" required>
-            </div>
-            <div>
-                <label for="signup-email">Email:</label>
-                <input type="email" id="signup-email" aria-label="Email" placeholder="Email" required>
-            </div>
-            <div>
-                <label for="signup-password">Password:</label>
-                <input type="password" id="signup-password" aria-label="Password" placeholder="Password" required>
-            </div>
-            <div>
-                <label for="signup-confirm-password">Confirm Password:</label>
-                <input type="password" id="signup-confirm-password" aria-label="Confirm Password" placeholder="Confirm Password" required>
-            </div>
-            <div>
-                <label for="signup-phone">Phone:</label>
-                <input type="text" id="signup-phone" aria-label="Phone" placeholder="Phone">
-            </div>
-            <div>
-                <label for="signup-street1">Street 1:</label>
-                <input type="text" id="signup-street1" aria-label="Street 1" placeholder="Street 1">
-            </div>
-            <div>
-                <label for="signup-street2">Street 2:</label>
-                <input type="text" id="signup-street2" aria-label="Street 2" placeholder="Street 2">
-            </div>
-            <div>
-                <label for="signup-postcode">Post Code:</label>
-                <input type="text" id="signup-postcode" aria-label="Post Code" placeholder="Post Code">
-            </div>
-            <div>
-                <label for="signup-city">City:</label>
-                <input type="text" id="signup-city" aria-label="City" placeholder="City">
-            </div>
-            <div>
-                <label for="signup-state">State:</label>
-                <input type="text" id="signup-state" aria-label="State" placeholder="State">
-            </div>
-            <div>
-                <label for="signup-country">Country:</label>
-                <select id="signup-country" aria-label="Country">
-                    <option value="">Select Country</option>
-                    <option value="us">United States</option>
-                    <option value="cn">China</option>
-                    <option value="uk">United Kingdom</option>
-                    <!-- Add more countries as needed -->
-                </select>
-            </div>
-            <button type="submit" aria-label="Sign Up">Sign Up</button>
-            <a href="login.html" class="link" aria-label="Sign In">Already have an account? Sign In</a>
-        </form>
-    </div>
+
+    <script>
+        function signup() {
+            // Placeholder for signup logic
+            alert('Sign Up form submitted');
+        }
+    </script>
 </body>
 </html>
