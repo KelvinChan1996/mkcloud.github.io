@@ -10,43 +10,12 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
+            align-items: center;
             background-color: #f4f4f4;
         }
-        .sidebar {
-            width: 250px;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            padding: 20px;
-            overflow-y: auto;
-            transition: transform 0.3s;
-            transform: translateX(-250px); /* Initially hidden */
-        }
-        .sidebar.active {
-            transform: translateX(0); /* Show when active */
-        }
-        .sidebar h2 {
-            margin-top: 0;
-            font-size: 24px;
-            color: #fff;
-        }
-        .sidebar a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .sidebar a:hover {
-            background-color: #575757;
-        }
         .header {
-            width: calc(100% - 250px);
+            width: 100%;
             background-color: #333;
             color: white;
             display: flex;
@@ -55,108 +24,76 @@
             padding: 10px 20px;
             position: fixed;
             top: 0;
-            left: 250px;
+            left: 0;
             z-index: 1000;
-            transition: width 0.3s, left 0.3s;
+            transition: top 0.3s;
         }
-        .header button {
-            background: none;
-            border: none;
+        .header a {
             color: white;
-            font-size: 20px;
-            cursor: pointer;
+            text-decoration: none;
+            margin: 0 10px;
         }
-        .header input {
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            width: 300px;
+        .header a:hover {
+            text-decoration: underline;
         }
         .content {
-            margin-top: 60px; /* Adjusted for the fixed header */
-            margin-left: 250px; /* Space for sidebar */
-            width: calc(100% - 250px);
-            max-width: 1200px;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .search-bar {
-            margin-bottom: 20px;
-        }
-        .settings-layout {
             display: flex;
-            flex-direction: row;
-            gap: 20px;
-        }
-        .settings-menu {
-            flex: 1;
-            background-color: #f4f4f4;
-            padding: 10px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            border-right: 1px solid #ccc;
-        }
-        .settings-menu h3 {
-            margin-top: 0;
-            font-size: 20px;
-        }
-        .settings-menu a {
-            display: block;
-            color: #333;
-            text-decoration: none;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .settings-menu a:hover {
-            background-color: #ddd;
-        }
-        .settings-content {
-            flex: 3;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 80px; /* Adjusted for the fixed header */
             padding: 20px;
-            background: white;
-            border-radius: 10px;
+            background-color: white;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .settings-content h4 {
-            margin-top: 0;
-            color: #333;
-        }
-        .settings-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .settings-table th, .settings-table td {
-            padding: 15px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        .settings-table th {
-            background-color: #f4f4f4;
-        }
-        .settings-section {
-            margin-bottom: 20px;
-        }
-        .settings-section label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        .settings-section input, .settings-section select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 10px;
             box-sizing: border-box;
         }
-        .settings-section button {
-            padding: 10px 15px;
+        .sidebar {
+            width: 250px;
+            margin-right: 20px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .sidebar h3 {
+            margin-top: 0;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+        .main-content {
+            flex: 1;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-container label {
+            margin: 5px 0 2px;
+            font-weight: bold;
+        }
+        .form-container input, .form-container select {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            padding: 10px;
             font-size: 16px;
             background-color: #007bff;
             color: white;
@@ -165,195 +102,172 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        .settings-section button:hover {
+        .form-container button:hover {
             background-color: #0056b3;
         }
-        .footer {
-            text-align: center;
-            margin-top: 20px;
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
         }
-        .footer a {
-            color: #007bff;
-            text-decoration: none;
+        .search-bar input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            flex: 1;
         }
-        .footer a:hover {
-            text-decoration: underline;
+        .search-bar button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .search-bar button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Menu</h2>
-        <a href="#" id="toggle-sidebar">☰ Menu</a>
-        <a href="index.html">Home</a>
-        <a href="info.html">Information</a>
-        <a href="contact.html">Contact Us</a>
-        <a href="settings.html">Settings</a>
-        <a href="login.html">Login</a>
-        <a href="signup.html">Signup</a>
-        <h3>Settings</h3>
-        <a href="#account">Account Settings</a>
-        <a href="#service">Service Configuration</a>
-        <a href="#security">Security Settings</a>
-        <a href="#notification">Notification Settings</a>
-        <a href="#backup">Backup and Restore</a>
-    </div>
-
     <div class="header">
-        <button id="list-button">☰</button>
-        <input type="text" id="search-settings" placeholder="Search settings...">
-        <div>
-            <a href="index.html">Home</a>
-            <a href="info.html">Information</a>
-            <a href="contact.html">Contact Us</a>
-            <a href="settings.html">Settings</a>
-            <a href="login.html">Login</a>
-            <a href="signup.html">Signup</a>
-        </div>
+        <h1><a href="index.html" id="site-title">MKCloud</a></h1>
+        <button id="list-button">List</button>
     </div>
 
     <div class="content">
-        <div class="settings-layout">
-            <div class="settings-menu">
-                <h3>Settings Menu</h3>
-                <a href="#account">Account Settings</a>
-                <a href="#service">Service Configuration</a>
-                <a href="#security">Security Settings</a>
-                <a href="#notification">Notification Settings</a>
-                <a href="#backup">Backup and Restore</a>
+        <div class="sidebar">
+            <h3>Settings</h3>
+            <ul>
+                <li><a href="#account-settings">Account Settings</a></li>
+                <li><a href="#notification-settings">Notification Settings</a></li>
+                <li><a href="#privacy-settings">Privacy Settings</a></li>
+                <li><a href="#security-settings">Security Settings</a></li>
+                <li><a href="#appearance-settings">Appearance Settings</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="search-bar">
+                <input type="text" placeholder="Search settings...">
+                <button type="button">Search</button>
             </div>
-            <div class="settings-content">
-                <div id="account" class="settings-section">
-                    <h4>Account Settings</h4>
-                    <table class="settings-table">
-                        <tr>
-                            <th>API Key</th>
-                            <td><input type="text" id="api-key" placeholder="Your API Key"></td>
-                        </tr>
-                        <tr>
-                            <th>Account Quota</th>
-                            <td><input type="text" id="account-quota" placeholder="Current Quota"></td>
-                        </tr>
-                        <tr>
-                            <th>Reset Password</th>
-                            <td><button type="button" onclick="resetPassword()">Reset Password</button></td>
-                        </tr>
-                    </table>
-                </div>
+            <div id="account-settings" class="form-container">
+                <h2>Account Settings</h2>
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Your email address">
                 
-                <div id="service" class="settings-section">
-                    <h4>Service Configuration</h4>
-                    <table class="settings-table">
-                        <tr>
-                            <th>Storage Option</th>
-                            <td>
-                                <select id="storage-option">
-                                    <option value="standard">Standard</option>
-                                    <option value="archival">Archival</option>
-                                    <option value="premium">Premium</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Compute Resources</th>
-                            <td>
-                                <select id="compute-resources">
-                                    <option value="small">Small</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="large">Large</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                <label for="reset-password">Reset Password:</label>
+                <input type="password" id="reset-password" placeholder="New password">
                 
-                <div id="security" class="settings-section">
-                    <h4>Security Settings</h4>
-                    <table class="settings-table">
-                        <tr>
-                            <th>Two-Factor Authentication</th>
-                            <td><input type="checkbox" id="two-factor-auth"></td>
-                        </tr>
-                        <tr>
-                            <th>Account Roles</th>
-                            <td>
-                                <select id="account-roles">
-                                    <option value="admin">Admin</option>
-                                    <option value="user">User</option>
-                                    <option value="guest">Guest</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" placeholder="Confirm new password">
                 
-                <div id="notification" class="settings-section">
-                    <h4>Notification Settings</h4>
-                    <table class="settings-table">
-                        <tr>
-                            <th>Email Notifications</th>
-                            <td><input type="checkbox" id="email-notifications"></td>
-                        </tr>
-                        <tr>
-                            <th>SMS Notifications</th>
-                            <td><input type="checkbox" id="sms-notifications"></td>
-                        </tr>
-                    </table>
-                </div>
+                <button type="button" onclick="updateAccountSettings()">Update Account Settings</button>
+            </div>
+
+            <div id="notification-settings" class="form-container">
+                <h2>Notification Settings</h2>
+                <label for="email-notifications">Email Notifications:</label>
+                <select id="email-notifications">
+                    <option value="all">All</option>
+                    <option value="important">Important Only</option>
+                    <option value="none">None</option>
+                </select>
                 
-                <div id="backup" class="settings-section">
-                    <h4>Backup and Restore</h4>
-                    <table class="settings-table">
-                        <tr>
-                            <th>Backup Frequency</th>
-                            <td>
-                                <select id="backup-frequency">
-                                    <option value="daily">Daily</option>
-                                    <option value="weekly">Weekly</option>
-                                    <option value="monthly">Monthly</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Restore Options</th>
-                            <td>
-                                <select id="restore-options">
-                                    <option value="latest">Latest Backup</option>
-                                    <option value="custom">Custom Backup</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                <label for="sms-notifications">SMS Notifications:</label>
+                <select id="sms-notifications">
+                    <option value="all">All</option>
+                    <option value="important">Important Only</option>
+                    <option value="none">None</option>
+                </select>
+                
+                <button type="button" onclick="updateNotificationSettings()">Update Notification Settings</button>
+            </div>
+
+            <div id="privacy-settings" class="form-container">
+                <h2>Privacy Settings</h2>
+                <label for="profile-visibility">Profile Visibility:</label>
+                <select id="profile-visibility">
+                    <option value="public">Public</option>
+                    <option value="friends">Friends Only</option>
+                    <option value="private">Private</option>
+                </select>
+                
+                <label for="search-engines">Allow Search Engines:</label>
+                <select id="search-engines">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                
+                <button type="button" onclick="updatePrivacySettings()">Update Privacy Settings</button>
+            </div>
+
+            <div id="security-settings" class="form-container">
+                <h2>Security Settings</h2>
+                <label for="two-factor-auth">Two-Factor Authentication:</label>
+                <select id="two-factor-auth">
+                    <option value="enabled">Enabled</option>
+                    <option value="disabled">Disabled</option>
+                </select>
+                
+                <label for="change-password">Change Password:</label>
+                <input type="password" id="change-password" placeholder="Current password">
+                
+                <button type="button" onclick="updateSecuritySettings()">Update Security Settings</button>
+            </div>
+
+            <div id="appearance-settings" class="form-container">
+                <h2>Appearance Settings</h2>
+                <label for="theme">Theme:</label>
+                <select id="theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+                
+                <label for="font-size">Font Size:</label>
+                <select id="font-size">
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
+                
+                <button type="button" onclick="updateAppearanceSettings()">Update Appearance Settings</button>
             </div>
         </div>
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2024 MKCloud. All rights reserved. <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
     </div>
 
     <script>
         document.getElementById('list-button').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('active');
-            document.querySelector('.header').classList.toggle('expanded');
+            document.querySelector('.sidebar').classList.toggle('show');
         });
 
-        function resetPassword() {
-            alert('Password reset functionality will be implemented here.');
+        function updateAccountSettings() {
+            // Placeholder for updating account settings
+            alert('Account settings updated');
         }
 
-        document.getElementById('search-settings').addEventListener('input', function(event) {
-            const searchTerm = event.target.value.toLowerCase();
-            document.querySelectorAll('.settings-section').forEach(section => {
-                const sectionText = section.textContent.toLowerCase();
-                if (sectionText.includes(searchTerm)) {
-                    section.style.display = '';
-                } else {
-                    section.style.display = 'none';
-                }
-            });
-        });
+        function updateNotificationSettings() {
+            // Placeholder for updating notification settings
+            alert('Notification settings updated');
+        }
+
+        function updatePrivacySettings() {
+            // Placeholder for updating privacy settings
+            alert('Privacy settings updated');
+        }
+
+        function updateSecuritySettings() {
+            // Placeholder for updating security settings
+            alert('Security settings updated');
+        }
+
+        function updateAppearanceSettings() {
+            // Placeholder for updating appearance settings
+            alert('Appearance settings updated');
+        }
     </script>
 </body>
 </html>
