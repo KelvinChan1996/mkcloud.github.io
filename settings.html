@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - MKCloud</title>
     <style>
-        /* 添加样式 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -27,18 +26,71 @@
             top: 0;
             left: 0;
             z-index: 1000;
+            transition: top 0.3s;
         }
         .header a {
             color: white;
             text-decoration: none;
             margin: 0 10px;
+            font-size: 16px;
         }
         .header a:hover {
             text-decoration: underline;
         }
         .content {
-            margin-top: 80px; /* 调整内容顶部间距以避免被导航栏遮挡 */
+            margin-top: 80px; /* Adjusted for the fixed header */
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            text-align: left;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .settings-section {
+            margin-bottom: 20px;
+        }
+        .settings-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .settings-section input, .settings-section select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .settings-section button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .settings-section button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
             text-align: center;
+            margin-top: 20px;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -56,8 +108,51 @@
     </div>
 
     <div class="content">
-        <h2>设置</h2>
-        <p>这里可以添加设置页面的内容。</p>
+        <h2>Settings</h2>
+        
+        <div class="settings-section">
+            <h3>Account Information</h3>
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Username">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Email">
+        </div>
+        
+        <div class="settings-section">
+            <h3>Notification Settings</h3>
+            <label for="email-notifications">Email Notifications:</label>
+            <select id="email-notifications">
+                <option value="all">All Notifications</option>
+                <option value="important">Important Notifications</option>
+                <option value="none">No Notifications</option>
+            </select>
+        </div>
+        
+        <div class="settings-section">
+            <h3>Privacy Settings</h3>
+            <label for="profile-visibility">Profile Visibility:</label>
+            <select id="profile-visibility">
+                <option value="public">Public</option>
+                <option value="friends">Friends Only</option>
+                <option value="private">Private</option>
+            </select>
+        </div>
+        
+        <div class="settings-section">
+            <button type="button" onclick="saveSettings()">Save Changes</button>
+        </div>
     </div>
+
+    <div class="footer">
+        <p><a href="index.html">Return to Home</a></p>
+    </div>
+
+    <script>
+        function saveSettings() {
+            // Placeholder for saving settings logic
+            alert('Settings saved successfully!');
+        }
+    </script>
 </body>
 </html>
