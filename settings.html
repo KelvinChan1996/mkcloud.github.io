@@ -217,13 +217,13 @@
             <div id="account-settings" class="form-container">
                 <h2>Account Settings</h2>
                 <label for="api-key">API Key:</label>
-                <input type="text" id="api-key" placeholder="Your API Key">
+                <input type="text" id="api-key" name="api-key" placeholder="Your API Key">
                 <label for="account-quota">Account Quota:</label>
-                <input type="text" id="account-quota" placeholder="Current Quota">
+                <input type="text" id="account-quota" name="account-quota" placeholder="Current Quota">
                 <label for="reset-password">Reset Password:</label>
-                <input type="password" id="reset-password" placeholder="New password">
+                <input type="password" id="reset-password" name="reset-password" placeholder="New password">
                 <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" placeholder="Confirm new password">
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm new password">
                 <button type="button">Update Account Settings</button>
             </div>
 
@@ -231,11 +231,11 @@
             <div id="service-configuration" class="form-container">
                 <h2>Service Configuration</h2>
                 <label for="storage-option">Storage Option:</label>
-                <select id="storage-option">
+                <select id="storage-option" name="storage-option">
                     <option>Standard</option>
                 </select>
                 <label for="compute-resources">Compute Resources:</label>
-                <select id="compute-resources">
+                <select id="compute-resources" name="compute-resources">
                     <option>Small</option>
                 </select>
                 <button type="button">Update Service Configuration</button>
@@ -245,11 +245,11 @@
             <div id="security-settings" class="form-container">
                 <h2>Security Settings</h2>
                 <label for="two-factor-auth">Two-Factor Authentication:</label>
-                <select id="two-factor-auth">
+                <select id="two-factor-auth" name="two-factor-auth">
                     <option>Enabled</option>
                 </select>
                 <label for="account-roles">Account Roles:</label>
-                <select id="account-roles">
+                <select id="account-roles" name="account-roles">
                     <option>Admin</option>
                 </select>
                 <button type="button">Update Security Settings</button>
@@ -259,11 +259,11 @@
             <div id="notification-settings" class="form-container">
                 <h2>Notification Settings</h2>
                 <label for="email-notifications">Email Notifications:</label>
-                <select id="email-notifications">
+                <select id="email-notifications" name="email-notifications">
                     <option>All</option>
                 </select>
                 <label for="sms-notifications">SMS Notifications:</label>
-                <select id="sms-notifications">
+                <select id="sms-notifications" name="sms-notifications">
                     <option>Enabled</option>
                 </select>
                 <button type="button">Update Notification Settings</button>
@@ -273,11 +273,11 @@
             <div id="backup-restore" class="form-container">
                 <h2>Backup and Restore</h2>
                 <label for="backup-schedule">Backup Schedule:</label>
-                <select id="backup-schedule">
+                <select id="backup-schedule" name="backup-schedule">
                     <option>Daily</option>
                 </select>
                 <label for="restore-point">Restore Point:</label>
-                <select id="restore-point">
+                <select id="restore-point" name="restore-point">
                     <option>Latest</option>
                 </select>
                 <button type="button">Update Backup and Restore</button>
@@ -287,9 +287,9 @@
             <div id="theme-settings" class="form-container">
                 <h2>Theme Settings</h2>
                 <label for="theme-color">Theme Color:</label>
-                <input type="color" id="theme-color" value="#007bff">
+                <input type="color" id="theme-color" name="theme-color" value="#007bff">
                 <label for="theme-font">Theme Font:</label>
-                <select id="theme-font">
+                <select id="theme-font" name="theme-font">
                     <option>Arial</option>
                     <option>Verdana</option>
                     <option>Times New Roman</option>
