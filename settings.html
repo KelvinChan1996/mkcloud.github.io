@@ -114,91 +114,82 @@
     <div class="content">
         <h2>Settings</h2>
         
-        <!-- Account Information Section -->
+        <!-- Account Settings Section -->
         <div class="settings-section">
-            <h3>Account Information</h3>
-            <label for="username">Username:</label>
-            <input type="text" id="username" placeholder="Username">
+            <h3>Account Settings</h3>
+            <label for="api-key">API Key:</label>
+            <input type="text" id="api-key" placeholder="Your API Key">
             
-            <label for="email">Email:</label>
-            <input type="email" id="email" placeholder="Email">
-            
-            <label for="current-password">Current Password:</label>
-            <input type="password" id="current-password" placeholder="Current Password">
-            
-            <label for="new-password">New Password:</label>
-            <input type="password" id="new-password" placeholder="New Password">
-            
-            <label for="confirm-password">Confirm New Password:</label>
-            <input type="password" id="confirm-password" placeholder="Confirm New Password">
+            <label for="account-quota">Account Quota:</label>
+            <input type="text" id="account-quota" placeholder="Current Quota">
         </div>
         
-        <!-- Notification Settings Section -->
+        <!-- Service Configuration Section -->
         <div class="settings-section">
-            <h3>Notification Settings</h3>
-            <label for="email-notifications">Email Notifications:</label>
-            <select id="email-notifications">
-                <option value="all">All Notifications</option>
-                <option value="important">Important Notifications</option>
-                <option value="none">No Notifications</option>
+            <h3>Service Configuration</h3>
+            <label for="storage-option">Storage Option:</label>
+            <select id="storage-option">
+                <option value="standard">Standard</option>
+                <option value="archival">Archival</option>
+                <option value="premium">Premium</option>
             </select>
             
-            <label for="sms-notifications">SMS Notifications:</label>
-            <select id="sms-notifications">
-                <option value="all">All Notifications</option>
-                <option value="important">Important Notifications</option>
-                <option value="none">No Notifications</option>
-            </select>
-        </div>
-        
-        <!-- Privacy Settings Section -->
-        <div class="settings-section">
-            <h3>Privacy Settings</h3>
-            <label for="profile-visibility">Profile Visibility:</label>
-            <select id="profile-visibility">
-                <option value="public">Public</option>
-                <option value="friends">Friends Only</option>
-                <option value="private">Private</option>
-            </select>
-            
-            <label for="search-visibility">Search Visibility:</label>
-            <select id="search-visibility">
-                <option value="public">Allow Search Engines</option>
-                <option value="private">Do Not Allow Search Engines</option>
-            </select>
-        </div>
-        
-        <!-- Language and Region Section -->
-        <div class="settings-section">
-            <h3>Language and Region</h3>
-            <label for="language">Language:</label>
-            <select id="language">
-                <option value="en">English</option>
-                <option value="es">Spanish</option>
-                <option value="fr">French</option>
-                <!-- Add more language options here -->
-            </select>
-            
-            <label for="timezone">Timezone:</label>
-            <select id="timezone">
-                <option value="utc">UTC</option>
-                <option value="pst">Pacific Time (PST)</option>
-                <option value="est">Eastern Time (EST)</option>
-                <!-- Add more timezones here -->
+            <label for="compute-resources">Compute Resources:</label>
+            <select id="compute-resources">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
             </select>
         </div>
         
         <!-- Security Settings Section -->
         <div class="settings-section">
             <h3>Security Settings</h3>
-            <label for="two-factor">Two-Factor Authentication:</label>
-            <select id="two-factor">
-                <option value="enabled">Enabled</option>
-                <option value="disabled">Disabled</option>
+            <label for="ip-whitelist">IP Whitelist:</label>
+            <input type="text" id="ip-whitelist" placeholder="Enter IP addresses separated by commas">
+            
+            <label for="permissions">Permissions:</label>
+            <select id="permissions">
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+                <option value="guest">Guest</option>
+            </select>
+        </div>
+        
+        <!-- Notification Settings Section -->
+        <div class="settings-section">
+            <h3>Notification Settings</h3>
+            <label for="alerts">Alerts:</label>
+            <select id="alerts">
+                <option value="all">All Alerts</option>
+                <option value="critical">Critical Alerts</option>
+                <option value="none">No Alerts</option>
             </select>
             
-            <label for="security-questions">Security Questions:</label>
-            <input type="text" id="security-questions" placeholder="Security Questions">
+            <label for="event-notifications">Event Notifications:</label>
+            <select id="event-notifications">
+                <option value="all">All Events</option>
+                <option value="important">Important Events</option>
+                <option value="none">No Events</option>
+            </select>
+        </div>
+        
+        <!-- Backup and Restore Section -->
+        <div class="settings-section">
+            <h3>Backup and Restore</h3>
+            <label for="backup-frequency">Backup Frequency:</label>
+            <select id="backup-frequency">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+            </select>
+            
+            <label for="restore-options">Restore Options:</label>
+            <select id="restore-options">
+                <option value="latest">Latest Backup</option>
+                <option value="specific">Specific Date</option>
+                <option value="manual">Manual Restore</option>
+            </select>
         </div>
         
         <div class="settings-section">
