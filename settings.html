@@ -28,6 +28,7 @@
             box-sizing: border-box;
             justify-content: space-between;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: width 0.3s ease;
         }
         .header a {
             color: white;
@@ -38,30 +39,40 @@
             text-decoration: underline;
         }
         .header .menu-button {
-            display: block; /* Ensure menu button is always visible */
             font-size: 24px;
             cursor: pointer;
+            display: block; /* Ensure menu button is visible */
         }
         .header .menu-button::before {
             content: "\2630"; /* Unicode character for hamburger menu */
+        }
+        .header .site-title {
+            flex: 1;
+            text-align: center;
+            font-size: 24px;
+            margin: 0;
         }
         .header .search-container {
             display: flex;
             align-items: center;
         }
         .header .search-container button {
-            padding: 10px 15px;
+            padding: 10px;
             font-size: 16px;
             background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-right: 10px;
+            margin-left: 10px;
             transition: background-color 0.3s ease;
         }
         .header .search-container button:hover {
             background-color: #0056b3;
+        }
+        .header .search-container button::before {
+            content: "\1F50D"; /* Unicode character for magnifying glass */
+            font-size: 20px;
         }
         .header .search-container input {
             display: none;
@@ -69,6 +80,7 @@
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin-left: 10px;
         }
         .header .search-container.show input {
             display: block;
@@ -163,9 +175,9 @@
 <body>
     <div class="header">
         <div class="menu-button" id="menu-button"></div>
-        <h1><a href="index.html" id="site-title">MKCloud</a></h1>
+        <h1 class="site-title"><a href="index.html" id="site-title">MKCloud</a></h1>
         <div class="search-container">
-            <button id="search-button" type="button">Search</button>
+            <button id="search-button" type="button"></button>
             <input type="text" id="search-box" placeholder="Search settings...">
         </div>
     </div>
@@ -227,7 +239,7 @@
                 <label for="account-roles">Account Roles:</label>
                 <select id="account-roles">
                     <option value="admin">Admin</option>
-                    <!-- Add other options as needed -->
+                    <!-- Add other roles as needed -->
                 </select>
                 
                 <button type="button" onclick="updateSecuritySettings()">Update Security Settings</button>
