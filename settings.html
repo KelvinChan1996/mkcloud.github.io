@@ -54,6 +54,10 @@
         .settings-section {
             margin-bottom: 20px;
         }
+        .settings-section h3 {
+            margin-top: 0;
+            color: #555;
+        }
         .settings-section label {
             display: block;
             margin-bottom: 8px;
@@ -110,6 +114,7 @@
     <div class="content">
         <h2>Settings</h2>
         
+        <!-- Account Information Section -->
         <div class="settings-section">
             <h3>Account Information</h3>
             <label for="username">Username:</label>
@@ -117,8 +122,18 @@
             
             <label for="email">Email:</label>
             <input type="email" id="email" placeholder="Email">
+            
+            <label for="current-password">Current Password:</label>
+            <input type="password" id="current-password" placeholder="Current Password">
+            
+            <label for="new-password">New Password:</label>
+            <input type="password" id="new-password" placeholder="New Password">
+            
+            <label for="confirm-password">Confirm New Password:</label>
+            <input type="password" id="confirm-password" placeholder="Confirm New Password">
         </div>
         
+        <!-- Notification Settings Section -->
         <div class="settings-section">
             <h3>Notification Settings</h3>
             <label for="email-notifications">Email Notifications:</label>
@@ -127,8 +142,16 @@
                 <option value="important">Important Notifications</option>
                 <option value="none">No Notifications</option>
             </select>
+            
+            <label for="sms-notifications">SMS Notifications:</label>
+            <select id="sms-notifications">
+                <option value="all">All Notifications</option>
+                <option value="important">Important Notifications</option>
+                <option value="none">No Notifications</option>
+            </select>
         </div>
         
+        <!-- Privacy Settings Section -->
         <div class="settings-section">
             <h3>Privacy Settings</h3>
             <label for="profile-visibility">Profile Visibility:</label>
@@ -137,6 +160,45 @@
                 <option value="friends">Friends Only</option>
                 <option value="private">Private</option>
             </select>
+            
+            <label for="search-visibility">Search Visibility:</label>
+            <select id="search-visibility">
+                <option value="public">Allow Search Engines</option>
+                <option value="private">Do Not Allow Search Engines</option>
+            </select>
+        </div>
+        
+        <!-- Language and Region Section -->
+        <div class="settings-section">
+            <h3>Language and Region</h3>
+            <label for="language">Language:</label>
+            <select id="language">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <!-- Add more language options here -->
+            </select>
+            
+            <label for="timezone">Timezone:</label>
+            <select id="timezone">
+                <option value="utc">UTC</option>
+                <option value="pst">Pacific Time (PST)</option>
+                <option value="est">Eastern Time (EST)</option>
+                <!-- Add more timezones here -->
+            </select>
+        </div>
+        
+        <!-- Security Settings Section -->
+        <div class="settings-section">
+            <h3>Security Settings</h3>
+            <label for="two-factor">Two-Factor Authentication:</label>
+            <select id="two-factor">
+                <option value="enabled">Enabled</option>
+                <option value="disabled">Disabled</option>
+            </select>
+            
+            <label for="security-questions">Security Questions:</label>
+            <input type="text" id="security-questions" placeholder="Security Questions">
         </div>
         
         <div class="settings-section">
