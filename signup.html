@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup - MKCloud</title>
     <style>
-        /* 添加样式 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -17,14 +16,14 @@
             background-color: #f4f4f4;
         }
         .signup-container {
-            width: 600px; /* 调整宽度 */
+            width: 600px;
             padding: 20px;
             background: white;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            border-top: 5px solid #333; /* 顶部边框 */
-            margin-top: 60px; /* 确保表单内容下移 */
+            border-top: 5px solid #333;
+            margin-top: 60px;
         }
         .signup-header {
             margin-bottom: 20px;
@@ -62,7 +61,7 @@
             box-sizing: border-box;
         }
         .signup-form button {
-            grid-column: span 2; /* 按钮跨越两列 */
+            grid-column: span 2;
             padding: 10px;
             border: none;
             border-radius: 4px;
@@ -75,7 +74,7 @@
             background-color: #555;
         }
         .signup-form .link {
-            grid-column: span 2; /* 链接跨越两列 */
+            grid-column: span 2;
             display: block;
             margin-top: 10px;
             text-decoration: none;
@@ -88,68 +87,68 @@
     </style>
 </head>
 <body>
-    <div class="signup-container">
+    <div class="signup-container" role="main" aria-labelledby="signup-title">
         <div class="signup-header">
-            <h1>MKCloud</h1>
+            <h1 id="company-name">MKCloud</h1>
             <div class="links">
-                <a href="signup.html">Sign Up</a>
+                <a href="signup.html" aria-current="page">Sign Up</a>
                 <span>|</span>
                 <a href="login.html">Sign In</a>
             </div>
         </div>
-        <h2>Sign Up</h2>
-        <div class="signup-form">
+        <h2 id="signup-title">Sign Up</h2>
+        <form class="signup-form" aria-labelledby="signup-title">
             <div>
                 <label for="signup-first-name">First Name:</label>
-                <input type="text" id="signup-first-name" placeholder="First Name">
+                <input type="text" id="signup-first-name" aria-label="First Name" placeholder="First Name" required>
             </div>
             <div>
                 <label for="signup-last-name">Last Name:</label>
-                <input type="text" id="signup-last-name" placeholder="Last Name">
+                <input type="text" id="signup-last-name" aria-label="Last Name" placeholder="Last Name" required>
             </div>
             <div>
                 <label for="signup-username">User Name:</label>
-                <input type="text" id="signup-username" placeholder="User Name">
+                <input type="text" id="signup-username" aria-label="User Name" placeholder="User Name" required>
             </div>
             <div>
                 <label for="signup-email">Email:</label>
-                <input type="email" id="signup-email" placeholder="Email">
+                <input type="email" id="signup-email" aria-label="Email" placeholder="Email" required>
             </div>
             <div>
                 <label for="signup-password">Password:</label>
-                <input type="password" id="signup-password" placeholder="Password">
+                <input type="password" id="signup-password" aria-label="Password" placeholder="Password" required>
             </div>
             <div>
                 <label for="signup-confirm-password">Confirm Password:</label>
-                <input type="password" id="signup-confirm-password" placeholder="Confirm Password">
+                <input type="password" id="signup-confirm-password" aria-label="Confirm Password" placeholder="Confirm Password" required>
             </div>
             <div>
                 <label for="signup-phone">Phone:</label>
-                <input type="text" id="signup-phone" placeholder="Phone">
+                <input type="text" id="signup-phone" aria-label="Phone" placeholder="Phone">
             </div>
             <div>
                 <label for="signup-street1">Street 1:</label>
-                <input type="text" id="signup-street1" placeholder="Street 1">
+                <input type="text" id="signup-street1" aria-label="Street 1" placeholder="Street 1">
             </div>
             <div>
                 <label for="signup-street2">Street 2:</label>
-                <input type="text" id="signup-street2" placeholder="Street 2">
+                <input type="text" id="signup-street2" aria-label="Street 2" placeholder="Street 2">
             </div>
             <div>
                 <label for="signup-postcode">Post Code:</label>
-                <input type="text" id="signup-postcode" placeholder="Post Code">
+                <input type="text" id="signup-postcode" aria-label="Post Code" placeholder="Post Code">
             </div>
             <div>
                 <label for="signup-city">City:</label>
-                <input type="text" id="signup-city" placeholder="City">
+                <input type="text" id="signup-city" aria-label="City" placeholder="City">
             </div>
             <div>
                 <label for="signup-state">State:</label>
-                <input type="text" id="signup-state" placeholder="State">
+                <input type="text" id="signup-state" aria-label="State" placeholder="State">
             </div>
             <div>
                 <label for="signup-country">Country:</label>
-                <select id="signup-country">
+                <select id="signup-country" aria-label="Country">
                     <option value="">Select Country</option>
                     <option value="us">United States</option>
                     <option value="cn">China</option>
@@ -157,35 +156,8 @@
                     <!-- Add more countries as needed -->
                 </select>
             </div>
-            <button onclick="signup()">Sign Up</button>
-        </div>
+            <button type="submit" aria-label="Sign Up">Sign Up</button>
+        </form>
     </div>
-
-    <script>
-        function signup() {
-            const firstName = document.getElementById('signup-first-name').value;
-            const lastName = document.getElementById('signup-last-name').value;
-            const username = document.getElementById('signup-username').value;
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            const confirmPassword = document.getElementById('signup-confirm-password').value;
-            const phone = document.getElementById('signup-phone').value;
-            const street1 = document.getElementById('signup-street1').value;
-            const street2 = document.getElementById('signup-street2').value;
-            const postcode = document.getElementById('signup-postcode').value;
-            const city = document.getElementById('signup-city').value;
-            const state = document.getElementById('signup-state').value;
-            const country = document.getElementById('signup-country').value;
-
-            // 简单验证
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-
-            // 执行注册逻辑（例如，服务器验证）
-            alert(`Sign Up\nFirst Name: ${firstName}\nLast Name: ${lastName}\nUser Name: ${username}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${street1}, ${street2}, ${postcode}, ${city}, ${state}, ${country}`);
-        }
-    </script>
 </body>
 </html>
