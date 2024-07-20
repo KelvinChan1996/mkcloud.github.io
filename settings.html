@@ -188,7 +188,7 @@
         <h1 class="site-title">MKCloud</h1>
         <div class="search-container">
             <button id="search-button"></button>
-            <input type="text" placeholder="Search settings...">
+            <input type="text" id="search-input" placeholder="Search settings...">
         </div>
     </div>
 
@@ -208,6 +208,7 @@
             <li><a href="#notification-settings">Notification Settings</a></li>
             <li><a href="#backup-restore">Backup and Restore</a></li>
             <li><a href="#theme-settings">Theme Settings</a></li>
+            <li><a href="#ai-search-settings">AI Search Settings</a></li>
         </ul>
     </div>
 
@@ -295,6 +296,23 @@
                     <option>Times New Roman</option>
                 </select>
                 <button type="button">Update Theme Settings</button>
+            </div>
+
+            <!-- AI Search Settings -->
+            <div id="ai-search-settings" class="form-container">
+                <h2>AI Search Settings</h2>
+                <label for="ai-search-enabled">AI Search:</label>
+                <select id="ai-search-enabled" name="ai-search-enabled">
+                    <option>Enabled</option>
+                    <option>Disabled</option>
+                </select>
+                <label for="ai-search-sensitivity">Sensitivity:</label>
+                <select id="ai-search-sensitivity" name="ai-search-sensitivity">
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                </select>
+                <button type="button">Update AI Search Settings</button>
             </div>
         </div>
     </div>
