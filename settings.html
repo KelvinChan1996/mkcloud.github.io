@@ -49,16 +49,16 @@
             display: flex;
             width: 80%; /* Adjusted to 80% of the viewport width */
             max-width: 1200px; /* Maximum width to maintain good appearance on large screens */
-            margin-top: 80px; /* Adjusted for the fixed header */
+            margin-top: 120px; /* Increased margin to create space between header and content */
             padding: 20px;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             border-radius: 10px;
             box-sizing: border-box;
+            gap: 20px; /* Space between sidebar and main content */
         }
         .sidebar {
             width: 300px; /* Increased sidebar width */
-            margin-right: 20px;
             background-color: #f9f9f9;
             padding: 15px;
             border-radius: 5px;
@@ -119,22 +119,14 @@
         .form-container button:hover {
             background-color: #0056b3;
         }
-        .search-bar {
+        .search-container {
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             width: 100%; /* Full width of the content area */
             box-sizing: border-box;
         }
-        .search-bar input {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            flex: 1;
-            box-sizing: border-box;
-        }
-        .search-bar button {
+        .search-container button {
             padding: 10px 15px;
             font-size: 16px;
             background-color: #007bff;
@@ -142,10 +134,22 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-left: 10px;
+            margin-right: 10px;
         }
-        .search-bar button:hover {
+        .search-container button:hover {
             background-color: #0056b3;
+        }
+        .search-container input {
+            display: none;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            flex: 1;
+            box-sizing: border-box;
+        }
+        .search-container.show input {
+            display: block;
         }
         .footer {
             width: 80%; /* Adjusted to 80% of the viewport width */
@@ -187,9 +191,9 @@
             </ul>
         </div>
         <div class="main-content">
-            <div class="search-bar">
-                <input type="text" placeholder="Search settings...">
-                <button type="button">Search</button>
+            <div class="search-container">
+                <button id="search-button" type="button">Search Settings</button>
+                <input type="text" id="search-box" placeholder="Search settings...">
             </div>
 
             <div class="form-container">
@@ -290,6 +294,12 @@
         document.getElementById('menu-button').addEventListener('click', function() {
             const sidebar = document.querySelector('.sidebar');
             sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+        });
+
+        document.getElementById('search-button').addEventListener('click', function() {
+            const searchBox = document.getElementById('search-box');
+            searchBox.style.display = searchBox.style.display === 'none' ? 'block' : 'none';
+            searchBox.focus();
         });
 
         function updateAccountSettings() {
