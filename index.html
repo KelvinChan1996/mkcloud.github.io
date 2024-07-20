@@ -5,65 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MKCloud</title>
     <style>
-        /* 基本样式 */
+        /* 添加样式 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
         }
         .header {
+            width: 100%;
+            background-color: #333;
+            color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            background-color: #f4f4f4;
-            border-bottom: 1px solid #ddd;
-        }
-        .header h1 {
-            margin: 0;
+            padding: 10px 20px;
         }
         .header a {
+            color: white;
             text-decoration: none;
-            color: #000;
-        }
-        .menu {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        .menu a {
-            text-decoration: none;
-            color: #000;
+            margin: 0 10px;
         }
         .dropdown {
-            margin-left: 20px;
+            margin: 0;
         }
         .login-form, .signup-form {
-            display: none; /* 默认隐藏表单 */
-            position: absolute;
-            right: 20px;
-            top: 60px;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none; /* 默认隐藏登录和注册表单 */
+            margin-top: 20px;
         }
         .body {
             white-space: pre-wrap; /* 保留换行符 */
-            margin: 20px;
+            text-align: center;
+            margin-top: 20px;
         }
         .error {
             color: red;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .form-container input {
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+            width: 200px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
     <div class="header">
         <h1><a href="https://kelvinchan1996.github.io/mkcloud.github.io/" id="site-title">MKCloud</a></h1>
-        <div class="menu">
-            <a href="#home">Home</a>
-            <a href="#information">Information</a>
-            <a href="#contact-us">Contact Us</a>
+        <div class="header-links">
+            <a href="#" id="home-link">Home</a>
+            <a href="#" id="info-link">Information</a>
+            <a href="#" id="contact-link">Contact Us</a>
             <div class="dropdown">
                 <label for="language">语言:</label>
                 <select id="language">
@@ -72,31 +77,26 @@
                     <option value="cn">中文</option>
                 </select>
             </div>
-            <button onclick="toggleLoginForm()">Login</button>
-            <button onclick="toggleSignupForm()">Signup</button>
+            <a href="#" id="login-link">Login</a>
+            <a href="#" id="signup-link">Signup</a>
         </div>
     </div>
 
-    <div id="content">
-        <p id="description">This is the main domain.</p>
-        
-        <h2 id="dynamic-content-title">Dynamic Content Example</h2>
-        <div id="content" class="loading">Loading...</div>
+    <div id="content" class="loading">Loading...</div>
 
-        <div class="login-form" id="login-form">
-            <h2>登录</h2>
-            <input type="text" id="login-username" placeholder="用户名">
-            <input type="password" id="login-password" placeholder="密码">
-            <button onclick="login()">登录</button>
-        </div>
+    <div class="form-container" id="login-form">
+        <h2>登录</h2>
+        <input type="text" id="username" placeholder="用户名">
+        <input type="password" id="password" placeholder="密码">
+        <button onclick="login()">登录</button>
+    </div>
 
-        <div class="signup-form" id="signup-form">
-            <h2>注册</h2>
-            <input type="text" id="signup-username" placeholder="用户名">
-            <input type="password" id="signup-password" placeholder="密码">
-            <input type="email" id="signup-email" placeholder="电子邮件">
-            <button onclick="signup()">注册</button>
-        </div>
+    <div class="form-container" id="signup-form">
+        <h2>注册</h2>
+        <input type="text" id="signup-username" placeholder="用户名">
+        <input type="email" id="signup-email" placeholder="电子邮箱">
+        <input type="password" id="signup-password" placeholder="密码">
+        <button onclick="signup()">注册</button>
     </div>
 
     <script>
@@ -132,28 +132,18 @@
         }
 
         function login() {
-            const username = document.getElementById('login-username').value;
-            const password = document.getElementById('login-password').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
             // 执行登录逻辑（例如，服务器验证）
             alert(`登录用户名: ${username}`);
         }
 
         function signup() {
             const username = document.getElementById('signup-username').value;
-            const password = document.getElementById('signup-password').value;
             const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
             // 执行注册逻辑（例如，服务器验证）
-            alert(`注册用户名: ${username}\n邮箱: ${email}`);
-        }
-
-        function toggleLoginForm() {
-            const loginForm = document.getElementById('login-form');
-            loginForm.style.display = loginForm.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function toggleSignupForm() {
-            const signupForm = document.getElementById('signup-form');
-            signupForm.style.display = signupForm.style.display === 'block' ? 'none' : 'block';
+            alert(`注册用户名: ${username}\n电子邮箱: ${email}`);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -162,6 +152,18 @@
                                 'en';
             document.getElementById('language').value = defaultLang;
             loadLanguage(defaultLang);
+
+            document.getElementById('login-link').addEventListener('click', function(event) {
+                event.preventDefault();
+                document.getElementById('login-form').style.display = 'block';
+                document.getElementById('signup-form').style.display = 'none';
+            });
+
+            document.getElementById('signup-link').addEventListener('click', function(event) {
+                event.preventDefault();
+                document.getElementById('signup-form').style.display = 'block';
+                document.getElementById('login-form').style.display = 'none';
+            });
 
             document.getElementById('language').addEventListener('change', setLanguage);
         });
