@@ -37,6 +37,14 @@
         .header a:hover {
             text-decoration: underline;
         }
+        .header .menu-button {
+            display: none; /* Initially hidden, will be shown on mobile */
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .header .menu-button::before {
+            content: "\2630"; /* Unicode character for hamburger menu */
+        }
         .content {
             display: flex;
             width: 80%; /* Adjusted to 80% of the viewport width */
@@ -149,7 +157,7 @@
 </head>
 <body>
     <div class="header">
-        <button id="list-button">List</button>
+        <div class="menu-button" id="menu-button"></div>
         <h1><a href="index.html" id="site-title">MKCloud</a></h1>
         <div class="header-links">
             <a href="index.html">Home</a>
@@ -162,8 +170,8 @@
     </div>
 
     <div class="content">
-        <div class="sidebar">
-            <h3>Settings Menu</h3>
+        <div class="sidebar" id="sidebar">
+            <h3>Menu</h3>
             <ul>
                 <li><a href="#account-settings">Account Settings</a></li>
                 <li><a href="#service-configuration">Service Configuration</a></li>
@@ -177,8 +185,9 @@
                 <input type="text" placeholder="Search settings...">
                 <button type="button">Search</button>
             </div>
-            <div id="account-settings" class="form-container">
-                <h2>Account Settings</h2>
+
+            <div class="form-container">
+                <h2 id="account-settings">Account Settings</h2>
                 <label for="api-key">API Key:</label>
                 <input type="text" id="api-key" value="Your API Key" disabled>
                 
@@ -194,8 +203,8 @@
                 <button type="button" onclick="updateAccountSettings()">Update Account Settings</button>
             </div>
 
-            <div id="service-configuration" class="form-container">
-                <h2>Service Configuration</h2>
+            <div class="form-container">
+                <h2 id="service-configuration">Service Configuration</h2>
                 <label for="storage-option">Storage Option:</label>
                 <select id="storage-option">
                     <option value="standard">Standard</option>
@@ -211,8 +220,8 @@
                 <button type="button" onclick="updateServiceConfiguration()">Update Service Configuration</button>
             </div>
 
-            <div id="security-settings" class="form-container">
-                <h2>Security Settings</h2>
+            <div class="form-container">
+                <h2 id="security-settings">Security Settings</h2>
                 <label for="two-factor-auth">Two-Factor Authentication:</label>
                 <select id="two-factor-auth">
                     <option value="enabled">Enabled</option>
@@ -228,8 +237,8 @@
                 <button type="button" onclick="updateSecuritySettings()">Update Security Settings</button>
             </div>
 
-            <div id="notification-settings" class="form-container">
-                <h2>Notification Settings</h2>
+            <div class="form-container">
+                <h2 id="notification-settings">Notification Settings</h2>
                 <label for="email-notifications">Email Notifications:</label>
                 <select id="email-notifications">
                     <option value="all">All</option>
@@ -247,8 +256,8 @@
                 <button type="button" onclick="updateNotificationSettings()">Update Notification Settings</button>
             </div>
 
-            <div id="backup-restore" class="form-container">
-                <h2>Backup and Restore</h2>
+            <div class="form-container">
+                <h2 id="backup-restore">Backup and Restore</h2>
                 <label for="backup-frequency">Backup Frequency:</label>
                 <select id="backup-frequency">
                     <option value="daily">Daily</option>
@@ -272,7 +281,7 @@
     </div>
 
     <script>
-        document.getElementById('list-button').addEventListener('click', function() {
+        document.getElementById('menu-button').addEventListener('click', function() {
             const sidebar = document.querySelector('.sidebar');
             sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
         });
