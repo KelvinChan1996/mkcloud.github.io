@@ -15,6 +15,39 @@
             height: 100vh;
             background-color: #f4f4f4;
         }
+        .header {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            color: white;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .header h1 a {
+            color: white;
+            text-decoration: none;
+        }
+        .header .header-links {
+            display: flex;
+            gap: 20px;
+        }
+        .header .header-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .header .header-links a:hover {
+            text-decoration: underline;
+        }
         .signup-container {
             width: 600px;
             padding: 20px;
@@ -22,24 +55,14 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            border-top: 5px solid #333;
             margin-top: 60px;
         }
         .signup-header {
             margin-bottom: 20px;
         }
-        .signup-header h1 {
+        .signup-header h2 {
             margin: 0;
             font-size: 24px;
-        }
-        .signup-header .links {
-            margin-top: 10px;
-        }
-        .signup-header .links a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
         }
         .signup-form {
             display: grid;
@@ -87,16 +110,17 @@
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1><a href="index.html" id="site-title">MKCloud</a></h1>
+        <div class="header-links">
+            <a href="signup.html" aria-current="page">Sign Up</a>
+            <a href="login.html">Sign In</a>
+        </div>
+    </div>
     <div class="signup-container" role="main" aria-labelledby="signup-title">
         <div class="signup-header">
-            <h1 id="company-name">MKCloud</h1>
-            <div class="links">
-                <a href="signup.html" aria-current="page">Sign Up</a>
-                <span>|</span>
-                <a href="login.html">Sign In</a>
-            </div>
+            <h2 id="signup-title">Sign Up</h2>
         </div>
-        <h2 id="signup-title">Sign Up</h2>
         <form class="signup-form" aria-labelledby="signup-title">
             <div>
                 <label for="signup-first-name">First Name:</label>
