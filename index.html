@@ -45,18 +45,58 @@
                 padding: 10px;
             }
         }
+        .dropdown {
+            margin: 20px 0;
+        }
+        .login-form {
+            display: none;
+            margin: 20px 0;
+        }
+        .login-form input {
+            margin: 5px 0;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .login-form button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-form button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <h1><a href="https://kelvinchan1996.github.io/mkcloud.github.io/" class="title-link" id="site-title">MKCloud</a></h1>
     <p id="description">This is the main domain.</p>
+    
+    <div class="dropdown">
+        <label for="language">Select Language:</label>
+        <select id="language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <!-- Add more languages here -->
+        </select>
+    </div>
+
     <h2 id="dynamic-content-title">Dynamic Content Example</h2>
     <div id="content" class="loading">Loading...</div>
+
+    <div class="login-form" id="login-form">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
     <script>
-        function loadLanguage() {
-            // 获取用户的语言或地理位置
-            const lang = navigator.language || 'en';
-            const file = lang.startsWith('es') ? 'es.json' : 'en.json';
+        function loadLanguage(lang) {
+            const file = lang === 'es' ? 'es.json' : 'en.json';
 
             fetch(file)
                 .then(response => response.json())
@@ -73,7 +113,30 @@
                     document.getElementById('content').innerHTML = '<p class="error">Failed to load content.</p>';
                 });
         }
-        document.addEventListener('DOMContentLoaded', loadLanguage);
+
+        function setLanguage() {
+            const lang = document.getElementById('language').value;
+            loadLanguage(lang);
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            // Perform login logic here (e.g., authentication with a server)
+            alert(`Logged in with username: ${username}`);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load language based on browser language or default to English
+            const defaultLang = navigator.language.startsWith('es') ? 'es' : 'en';
+            document.getElementById('language').value = defaultLang;
+            loadLanguage(defaultLang);
+
+            // Show login form if needed (e.g., based on user session)
+            document.getElementById('login-form').style.display = 'block';
+        });
+
+        document.getElementById('language').addEventListener('change', setLanguage);
     </script>
 </body>
 </html>
