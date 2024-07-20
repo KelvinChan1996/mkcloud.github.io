@@ -5,82 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MKCloud</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        h1 {
-            color: #444;
-        }
-        #content {
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            padding: 15px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        #content p {
-            margin: 0;
-            padding: 5px 0;
-        }
-        .error {
-            color: red;
-            font-weight: bold;
-        }
-        .loading {
-            font-style: italic;
-        }
-        .title-link {
-            text-decoration: none;
-            color: #007bff;
-        }
-        .title-link:hover {
-            text-decoration: underline;
-        }
-        @media (max-width: 600px) {
-            #content {
-                padding: 10px;
-            }
-        }
+        /* 添加样式 */
         .dropdown {
-            margin: 20px 0;
+            margin-bottom: 20px;
         }
         .login-form {
-            display: none;
-            margin: 20px 0;
-        }
-        .login-form input {
-            margin: 5px 0;
-            padding: 8px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .login-form button {
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .login-form button:hover {
-            background-color: #0056b3;
+            display: none; /* 默认隐藏登录表单 */
         }
     </style>
 </head>
 <body>
-    <h1><a href="https://kelvinchan1996.github.io/mkcloud.github.io/" class="title-link" id="site-title">MKCloud</a></h1>
+    <h1><a href="https://kelvinchan1996.github.io/mkcloud.github.io/" id="site-title">MKCloud</a></h1>
     <p id="description">This is the main domain.</p>
     
     <div class="dropdown">
-        <label for="language">Select Language:</label>
+        <label for="language">选择语言:</label>
         <select id="language">
             <option value="en">English</option>
             <option value="es">Español</option>
-            <!-- Add more languages here -->
+            <option value="cn">中文</option>
         </select>
     </div>
 
@@ -88,18 +31,25 @@
     <div id="content" class="loading">Loading...</div>
 
     <div class="login-form" id="login-form">
-        <h2>Login</h2>
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="login()">Login</button>
+        <h2>登录</h2>
+        <input type="text" id="username" placeholder="用户名">
+        <input type="password" id="password" placeholder="密码">
+        <button onclick="login()">登录</button>
     </div>
 
     <script>
         function loadLanguage(lang) {
-            const file = lang === 'es' ? 'es.json' : 'en.json';
+            const file = lang === 'es' ? 'es.json' :
+                         lang === 'cn' ? 'cn.json' :
+                         'en.json';
 
             fetch(file)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     document.getElementById('site-title').innerText = data.title;
                     document.getElementById('description').innerText = data.description;
@@ -122,17 +72,17 @@
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            // Perform login logic here (e.g., authentication with a server)
-            alert(`Logged in with username: ${username}`);
+            // 执行登录逻辑（例如，服务器验证）
+            alert(`登录用户名: ${username}`);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Load language based on browser language or default to English
-            const defaultLang = navigator.language.startsWith('es') ? 'es' : 'en';
+            const defaultLang = navigator.language.startsWith('zh') ? 'cn' :
+                                navigator.language.startsWith('es') ? 'es' :
+                                'en';
             document.getElementById('language').value = defaultLang;
             loadLanguage(defaultLang);
 
-            // Show login form if needed (e.g., based on user session)
             document.getElementById('login-form').style.display = 'block';
         });
 
