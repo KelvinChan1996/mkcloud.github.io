@@ -23,6 +23,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .header h1 {
+            margin: 0;
         }
         .header a {
             color: white;
@@ -39,7 +46,7 @@
         .body {
             white-space: pre-wrap; /* 保留换行符 */
             text-align: center;
-            margin-top: 20px;
+            margin-top: 80px; /* 调整内容顶部间距以避免被导航栏遮挡 */
         }
         .error {
             color: red;
@@ -59,6 +66,10 @@
         .form-container button {
             padding: 10px 20px;
             font-size: 16px;
+        }
+        .header-links {
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
