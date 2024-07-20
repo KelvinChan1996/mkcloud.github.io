@@ -63,6 +63,7 @@
             padding: 15px;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-sizing: border-box;
         }
         .sidebar h3 {
             margin-top: 0;
@@ -83,12 +84,14 @@
         }
         .main-content {
             flex: 1;
+            box-sizing: border-box;
         }
         .form-container {
             display: flex;
             flex-direction: column;
             margin-bottom: 20px;
-            width: 120%; /* Increased form container width */
+            width: 100%; /* Full width of the content area */
+            box-sizing: border-box;
         }
         .form-container label {
             margin: 5px 0 2px;
@@ -98,7 +101,7 @@
             margin-bottom: 15px;
             padding: 10px;
             font-size: 16px;
-            width: 100%;
+            width: 100%; /* Ensure input fields fit within their container */
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -120,6 +123,8 @@
             margin-bottom: 20px;
             display: flex;
             align-items: center;
+            width: 100%; /* Full width of the content area */
+            box-sizing: border-box;
         }
         .search-bar input {
             padding: 10px;
@@ -127,6 +132,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             flex: 1;
+            box-sizing: border-box;
         }
         .search-bar button {
             padding: 10px 15px;
@@ -231,7 +237,7 @@
                 <label for="account-roles">Account Roles:</label>
                 <select id="account-roles">
                     <option value="admin">Admin</option>
-                    <!-- Add other roles as needed -->
+                    <!-- Add other options as needed -->
                 </select>
                 
                 <button type="button" onclick="updateSecuritySettings()">Update Security Settings</button>
