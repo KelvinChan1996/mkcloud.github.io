@@ -39,20 +39,26 @@
         .dropdown {
             margin: 0;
         }
-        .body {
-            white-space: pre-wrap; /* 保留换行符 */
-            text-align: center;
+        .content {
             margin-top: 80px; /* 调整内容顶部间距以避免被导航栏遮挡 */
+            text-align: center;
         }
-        .error {
-            color: red;
+        .form-container {
+            display: none; /* 默认隐藏表单 */
+            margin-top: 20px;
+        }
+        .form-container input {
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+            width: 200px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 16px;
         }
         .settings {
             display: none; /* 默认隐藏设置菜单 */
-        }
-        .settings-content {
-            display: none; /* 默认隐藏设置内容 */
-            margin-top: 20px;
         }
     </style>
 </head>
@@ -69,10 +75,30 @@
         </div>
     </div>
 
-    <div id="content" class="loading">Loading...</div>
+    <div id="content" class="content">
+        <!-- 默认内容 -->
+        <p>quia et suscipit<br>
+        suscipit recusandae consequuntur expedita et cum<br>
+        reprehenderit molestiae ut ut quas totam<br>
+        nostrum rerum est autem sunt rem eveniet architecto</p>
 
-    <div class="settings" id="settings-menu">
-        <div class="settings-content" id="language-settings">
+        <div class="form-container" id="login-form">
+            <h2>登录</h2>
+            <input type="text" id="username" placeholder="用户名">
+            <input type="password" id="password" placeholder="密码">
+            <button onclick="login()">登录</button>
+        </div>
+
+        <div class="form-container" id="signup-form">
+            <h2>注册</h2>
+            <input type="text" id="signup-username" placeholder="用户名">
+            <input type="email" id="signup-email" placeholder="电子邮箱">
+            <input type="password" id="signup-password" placeholder="密码">
+            <button onclick="signup()">注册</button>
+        </div>
+
+        <div class="form-container" id="settings">
+            <h2>Settings</h2>
             <label for="language">语言:</label>
             <select id="language">
                 <option value="en">English</option>
@@ -120,9 +146,25 @@
             loadLanguage(lang);
         }
 
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            // 执行登录逻辑（例如，服务器验证）
+            alert(`登录用户名: ${username}`);
+        }
+
+        function signup() {
+            const username = document.getElementById('signup-username').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            // 执行注册逻辑（例如，服务器验证）
+            alert(`注册用户名: ${username}\n电子邮箱: ${email}`);
+        }
+
         function showForm(formId) {
             document.getElementById('login-form').style.display = 'none';
             document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('settings').style.display = 'none';
             document.getElementById(formId).style.display = 'block';
         }
 
@@ -135,21 +177,18 @@
 
             document.getElementById('settings-link').addEventListener('click', function(event) {
                 event.preventDefault();
-                const settingsMenu = document.getElementById('settings-menu');
-                settingsMenu.style.display = settingsMenu.style.display === 'none' || settingsMenu.style.display === '' ? 'block' : 'none';
+                showForm('settings');
             });
 
             document.getElementById('login-link').addEventListener('click', function(event) {
                 event.preventDefault();
-                window.location.href = 'login.html'; // 导航到登录页面
+                showForm('login-form');
             });
 
             document.getElementById('signup-link').addEventListener('click', function(event) {
                 event.preventDefault();
-                window.location.href = 'signup.html'; // 导航到注册页面
+                showForm('signup-form');
             });
-
-            document.getElementById('language').addEventListener('change', setLanguage);
         });
     </script>
 </body>
