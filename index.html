@@ -38,7 +38,9 @@
             color: red;
             font-weight: bold;
         }
-        /* 响应式设计 */
+        .loading {
+            font-style: italic;
+        }
         @media (max-width: 600px) {
             #content {
                 padding: 10px;
@@ -50,7 +52,7 @@
     <h1>Welcome to MKCloud!</h1>
     <p>This is the main domain.</p>
     <h2>Dynamic Content Example</h2>
-    <div id="content">Loading...</div>
+    <div id="content" class="loading">Loading...</div>
     <script>
         function loadData() {
             fetch('https://jsonplaceholder.typicode.com/posts/1')  // 替换为实际的 API 端点
