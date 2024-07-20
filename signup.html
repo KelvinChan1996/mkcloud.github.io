@@ -11,74 +11,72 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            height: 100vh;
             background-color: #f4f4f4;
         }
-        .header {
-            width: 100%;
-            background-color: #333;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-        .header a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        .header a:hover {
-            text-decoration: underline;
-        }
-        .content {
-            margin-top: 80px; /* 调整内容顶部间距以避免被导航栏遮挡 */
+        .signup-container {
+            width: 300px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        .form-container {
-            margin-top: 20px;
+        .signup-container h1 {
+            margin: 0 0 20px 0;
+            font-size: 24px;
         }
-        .form-container input {
+        .signup-container p {
+            margin: 0 0 20px 0;
+            font-size: 18px;
+        }
+        .signup-container input {
+            width: 100%;
+            padding: 10px;
             margin-bottom: 10px;
-            padding: 8px;
-            font-size: 16px;
-            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
-        .form-container button {
-            padding: 10px 20px;
+        .signup-container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
             font-size: 16px;
+        }
+        .signup-container button:hover {
+            background-color: #555;
+        }
+        .signup-container .link {
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+        }
+        .signup-container .link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1><a href="index.html" id="site-title">MKCloud</a></h1>
-        <div class="header-links">
-            <a href="index.html">Home</a>
-            <a href="info.html">Information</a>
-            <a href="contact.html">Contact Us</a>
-            <a href="settings.html">Settings</a>
-            <a href="login.html">Login</a>
-            <a href="signup.html">Signup</a>
-        </div>
-    </div>
-
-    <div class="content">
-        <h2>注册</h2>
-        <div class="form-container">
-            <input type="text" id="signup-username" placeholder="用户名">
-            <input type="email" id="signup-email" placeholder="电子邮箱">
-            <input type="password" id="signup-password" placeholder="密码">
-            <input type="password" id="signup-confirm-password" placeholder="确认密码">
-            <input type="text" id="signup-phone" placeholder="手机号">
-            <input type="text" id="signup-address" placeholder="地址">
-            <button onclick="signup()">注册</button>
-        </div>
+    <div class="signup-container">
+        <h1>MKCloud</h1>
+        <p>Sign up for an account</p>
+        <input type="text" id="signup-username" placeholder="User Name">
+        <input type="email" id="signup-email" placeholder="Email">
+        <input type="password" id="signup-password" placeholder="Password">
+        <input type="password" id="signup-confirm-password" placeholder="Confirm Password">
+        <input type="text" id="signup-phone" placeholder="Phone">
+        <input type="text" id="signup-address" placeholder="Address">
+        <button onclick="signup()">Sign Up</button>
+        <a href="login.html" class="link">Login</a>
     </div>
 
     <script>
@@ -89,8 +87,15 @@
             const confirmPassword = document.getElementById('signup-confirm-password').value;
             const phone = document.getElementById('signup-phone').value;
             const address = document.getElementById('signup-address').value;
+
+            // 简单验证
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
             // 执行注册逻辑（例如，服务器验证）
-            alert(`注册用户名: ${username}\n电子邮箱: ${email}\n密码: ${password}\n确认密码: ${confirmPassword}\n手机号: ${phone}\n地址: ${address}`);
+            alert(`Sign Up\nUser Name: ${username}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}`);
         }
     </script>
 </body>
