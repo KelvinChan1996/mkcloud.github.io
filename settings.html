@@ -1,323 +1,191 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings - MKCloud</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #f4f4f4;
-        }
-        .header {
-            width: 100%; /* Full width */
-            background-color: #333;
-            color: white;
-            display: flex;
-            align-items: center;
-            padding: 10px 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            box-sizing: border-box;
-            justify-content: space-between;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: width 0.3s ease;
-        }
-        .header a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        .header a:hover {
-            text-decoration: underline;
-        }
-        .header .menu-button {
-            font-size: 24px;
-            cursor: pointer;
-            display: block; /* Ensure menu button is visible */
-        }
-        .header .menu-button::before {
-            content: "\2630"; /* Unicode character for hamburger menu */
-        }
-        .header .site-title {
-            flex: 1;
-            text-align: center;
-            font-size: 24px;
-            margin: 0;
-        }
-        .header .search-container {
-            display: flex;
-            align-items: center;
-        }
-        .header .search-container button {
-            padding: 10px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: 10px;
-            transition: background-color 0.3s ease;
-        }
-        .header .search-container button:hover {
-            background-color: #0056b3;
-        }
-        .header .search-container button::before {
-            content: "\1F50D"; /* Unicode character for magnifying glass */
-            font-size: 20px;
-        }
-        .header .search-container input {
-            display: none;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-left: 10px;
-        }
-        .header .search-container.show input {
-            display: block;
-        }
-        .content {
-            display: flex;
-            width: 100%;
-            max-width: 1200px;
-            margin-top: 80px; /* Adjusted margin to create space between header and content */
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            box-sizing: border-box;
-            gap: 20px;
-        }
-        .sidebar {
-            width: 300px;
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            box-sizing: border-box;
-        }
-        .sidebar h3 {
-            margin-top: 0;
-        }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .sidebar ul li {
-            margin-bottom: 10px;
-        }
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #007bff;
-        }
-        .sidebar ul li a:hover {
-            text-decoration: underline;
-        }
-        .main-content {
-            flex: 1;
-            box-sizing: border-box;
-        }
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .form-container label {
-            margin: 5px 0 2px;
-            font-weight: bold;
-        }
-        .form-container input, .form-container select {
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 16px;
-            width: 100%;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .form-container button {
-            padding: 10px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .form-container button:hover {
-            background-color: #0056b3;
-        }
-        .footer {
-            width: 100%;
-            max-width: 1200px;
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-            margin-top: 20px;
-            box-sizing: border-box;
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <div class="menu-button" id="menu-button"></div>
-        <h1 class="site-title"><a href="index.html" id="site-title">MKCloud</a></h1>
-        <div class="search-container">
-            <button id="search-button" type="button"></button>
-            <input type="text" id="search-box" placeholder="Search settings...">
-        </div>
-    </div>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+}
 
-    <div class="content">
-        <div class="sidebar" id="sidebar">
-            <h3>Settings Menu</h3>
-            <ul>
-                <li><a href="#account-settings">Account Settings</a></li>
-                <li><a href="#service-configuration">Service Configuration</a></li>
-                <li><a href="#security-settings">Security Settings</a></li>
-                <li><a href="#notification-settings">Notification Settings</a></li>
-                <li><a href="#backup-restore">Backup and Restore</a></li>
-            </ul>
-        </div>
-        <div class="main-content">
-            <div class="form-container">
-                <h2 id="account-settings">Account Settings</h2>
-                <label for="api-key">API Key:</label>
-                <input type="text" id="api-key" value="Your API Key" disabled>
-                
-                <label for="account-quota">Account Quota:</label>
-                <input type="text" id="account-quota" value="Current Quota" disabled>
-                
-                <label for="reset-password">Reset Password:</label>
-                <input type="password" id="reset-password" placeholder="New password">
-                
-                <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" placeholder="Confirm new password">
-                
-                <button type="button" onclick="updateAccountSettings()">Update Account Settings</button>
-            </div>
+.header {
+    width: 100%; /* Full width */
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: width 0.3s ease;
+}
 
-            <div class="form-container">
-                <h2 id="service-configuration">Service Configuration</h2>
-                <label for="storage-option">Storage Option:</label>
-                <select id="storage-option">
-                    <option value="standard">Standard</option>
-                    <!-- Add other options as needed -->
-                </select>
-                
-                <label for="compute-resources">Compute Resources:</label>
-                <select id="compute-resources">
-                    <option value="small">Small</option>
-                    <!-- Add other options as needed -->
-                </select>
-                
-                <button type="button" onclick="updateServiceConfiguration()">Update Service Configuration</button>
-            </div>
+.header a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
 
-            <div class="form-container">
-                <h2 id="security-settings">Security Settings</h2>
-                <label for="two-factor-auth">Two-Factor Authentication:</label>
-                <select id="two-factor-auth">
-                    <option value="enabled">Enabled</option>
-                    <option value="disabled">Disabled</option>
-                </select>
-                
-                <label for="account-roles">Account Roles:</label>
-                <select id="account-roles">
-                    <option value="admin">Admin</option>
-                    <!-- Add other roles as needed -->
-                </select>
-                
-                <button type="button" onclick="updateSecuritySettings()">Update Security Settings</button>
-            </div>
+.header a:hover {
+    text-decoration: underline;
+}
 
-            <div class="form-container">
-                <h2 id="notification-settings">Notification Settings</h2>
-                <label for="email-notifications">Email Notifications:</label>
-                <select id="email-notifications">
-                    <option value="all">All</option>
-                    <option value="important">Important Only</option>
-                    <option value="none">None</option>
-                </select>
-                
-                <label for="sms-notifications">SMS Notifications:</label>
-                <select id="sms-notifications">
-                    <option value="all">All</option>
-                    <option value="important">Important Only</option>
-                    <option value="none">None</option>
-                </select>
-                
-                <button type="button" onclick="updateNotificationSettings()">Update Notification Settings</button>
-            </div>
+.header .menu-button {
+    font-size: 24px;
+    cursor: pointer;
+    display: block; /* Ensure menu button is visible */
+}
 
-            <div class="form-container">
-                <h2 id="backup-restore">Backup and Restore</h2>
-                <label for="backup-frequency">Backup Frequency:</label>
-                <select id="backup-frequency">
-                    <option value="daily">Daily</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
-                </select>
-                
-                <label for="restore-options">Restore Options:</label>
-                <select id="restore-options">
-                    <option value="latest">Latest Backup</option>
-                    <option value="specific">Specific Backup</option>
-                </select>
-                
-                <button type="button" onclick="updateBackupRestore()">Update Backup and Restore</button>
-            </div>
-        </div>
-    </div>
+.header .menu-button::before {
+    content: "\2630"; /* Unicode character for hamburger menu */
+}
 
-    <div class="footer">
-        <p>© 2024 MKCloud. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </div>
+.header .site-title {
+    flex: 1;
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+}
 
-    <script>
-        document.getElementById('menu-button').addEventListener('click', function() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
-        });
+.header .search-container {
+    display: flex;
+    align-items: center;
+}
 
-        document.getElementById('search-button').addEventListener('click', function() {
-            const searchContainer = document.querySelector('.search-container');
-            searchContainer.classList.toggle('show');
-        });
+.header .search-container button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
 
-        function updateAccountSettings() {
-            alert('Account settings updated');
-        }
+.header .search-container button:hover {
+    background-color: #0056b3;
+}
 
-        function updateServiceConfiguration() {
-            alert('Service configuration updated');
-        }
+.header .search-container button::before {
+    content: "\1F50D"; /* Unicode character for magnifying glass */
+    font-size: 20px;
+}
 
-        function updateSecuritySettings() {
-            alert('Security settings updated');
-        }
+.header .search-container input {
+    display: none;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+}
 
-        function updateNotificationSettings() {
-            alert('Notification settings updated');
-        }
+.header .search-container.show input {
+    display: block;
+}
 
-        function updateBackupRestore() {
-            alert('Backup and restore settings updated');
-        }
-    </script>
-</body>
-</html>
+.content {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 80px; /* Adjusted margin to create space between header and content */
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-sizing: border-box;
+    gap: 20px;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-container label {
+    margin: 5px 0 2px;
+    font-weight: bold;
+}
+
+.form-container input, .form-container select {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+.footer {
+    width: 100%; /* Full width */
+    max-width: 1200px; /* Same as header */
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 5px; /* Reduced padding for height reduction */
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    box-sizing: border-box;
+}
