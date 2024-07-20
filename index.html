@@ -16,11 +16,12 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            white-space: pre-wrap; /* 保持换行 */
         }
     </style>
     <script>
         function loadData() {
-            fetch('https://jsonplaceholder.typicode.com/posts/1')  // 测试公共 API
+            fetch('https://jsonplaceholder.typicode.com/posts/1')  // 示例 API
                 .then(response => response.json())
                 .then(data => {
                     const contentDiv = document.getElementById('content');
