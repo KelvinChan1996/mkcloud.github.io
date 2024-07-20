@@ -13,7 +13,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #f4f4f4;
+            background-color: #f4f4f4; /* 灰色背景 */
         }
         .header {
             width: 100%;
@@ -36,29 +36,12 @@
             text-decoration: none;
             margin: 0 10px;
         }
-        .dropdown {
-            margin: 0;
+        .header a:hover {
+            text-decoration: underline;
         }
         .content {
             margin-top: 80px; /* 调整内容顶部间距以避免被导航栏遮挡 */
             text-align: center;
-        }
-        .form-container {
-            display: none; /* 默认隐藏表单 */
-            margin-top: 20px;
-        }
-        .form-container input {
-            margin-bottom: 10px;
-            padding: 8px;
-            font-size: 16px;
-            width: 200px;
-        }
-        .form-container button {
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-        .settings {
-            display: none; /* 默认隐藏设置菜单 */
         }
     </style>
 </head>
@@ -69,127 +52,17 @@
             <a href="https://kelvinchan1996.github.io/mkcloud.github.io/" id="home-link">Home</a>
             <a href="#" id="info-link">Information</a>
             <a href="#" id="contact-link">Contact Us</a>
-            <a href="#" id="settings-link">Settings</a>
-            <a href="#" id="login-link">Login</a>
-            <a href="#" id="signup-link">Signup</a>
+            <a href="settings.html" id="settings-link">Settings</a>
+            <a href="login.html" id="login-link">Login</a>
+            <a href="signup.html" id="signup-link">Signup</a>
         </div>
     </div>
 
-    <div id="content" class="content">
-        <!-- 默认内容 -->
+    <div class="content">
         <p>quia et suscipit<br>
         suscipit recusandae consequuntur expedita et cum<br>
         reprehenderit molestiae ut ut quas totam<br>
         nostrum rerum est autem sunt rem eveniet architecto</p>
-
-        <div class="form-container" id="login-form">
-            <h2>登录</h2>
-            <input type="text" id="username" placeholder="用户名">
-            <input type="password" id="password" placeholder="密码">
-            <button onclick="login()">登录</button>
-        </div>
-
-        <div class="form-container" id="signup-form">
-            <h2>注册</h2>
-            <input type="text" id="signup-username" placeholder="用户名">
-            <input type="email" id="signup-email" placeholder="电子邮箱">
-            <input type="password" id="signup-password" placeholder="密码">
-            <button onclick="signup()">注册</button>
-        </div>
-
-        <div class="form-container" id="settings">
-            <h2>Settings</h2>
-            <label for="language">语言:</label>
-            <select id="language">
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="cn">中文</option>
-            </select>
-            <button onclick="saveLanguage()">保存语言</button>
-        </div>
     </div>
-
-    <script>
-        function loadLanguage(lang) {
-            const file = lang === 'es' ? 'es.json' :
-                         lang === 'cn' ? 'cn.json' :
-                         'en.json';
-
-            fetch(file)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Network response was not ok: ${response.statusText}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (!data || !data.title || !data.body) {
-                        throw new Error('Invalid content in language file');
-                    }
-                    document.getElementById('site-title').innerText = data.title;
-                    document.getElementById('content').innerHTML = `<p class="body">${data.body.replace(/\n/g, '<br>')}</p>`;
-                })
-                .catch(error => {
-                    console.error('Error loading language file:', error);
-                    document.getElementById('content').innerHTML = '<p class="error">Failed to load content.</p>';
-                });
-        }
-
-        function setLanguage() {
-            const lang = document.getElementById('language').value;
-            loadLanguage(lang);
-        }
-
-        function saveLanguage() {
-            const lang = document.getElementById('language').value;
-            localStorage.setItem('selectedLanguage', lang); // 保存语言选择
-            loadLanguage(lang);
-        }
-
-        function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            // 执行登录逻辑（例如，服务器验证）
-            alert(`登录用户名: ${username}`);
-        }
-
-        function signup() {
-            const username = document.getElementById('signup-username').value;
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            // 执行注册逻辑（例如，服务器验证）
-            alert(`注册用户名: ${username}\n电子邮箱: ${email}`);
-        }
-
-        function showForm(formId) {
-            document.getElementById('login-form').style.display = 'none';
-            document.getElementById('signup-form').style.display = 'none';
-            document.getElementById('settings').style.display = 'none';
-            document.getElementById(formId).style.display = 'block';
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('selectedLanguage') || navigator.language.startsWith('zh') ? 'cn' :
-                              navigator.language.startsWith('es') ? 'es' :
-                              'en';
-            document.getElementById('language').value = savedLang;
-            loadLanguage(savedLang);
-
-            document.getElementById('settings-link').addEventListener('click', function(event) {
-                event.preventDefault();
-                showForm('settings');
-            });
-
-            document.getElementById('login-link').addEventListener('click', function(event) {
-                event.preventDefault();
-                showForm('login-form');
-            });
-
-            document.getElementById('signup-link').addEventListener('click', function(event) {
-                event.preventDefault();
-                showForm('signup-form');
-            });
-        });
-    </script>
 </body>
 </html>
