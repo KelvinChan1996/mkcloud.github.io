@@ -119,17 +119,16 @@
             fetch(file)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Network response was not ok');
+                        throw new Error(`Network response was not ok: ${response.statusText}`);
                     }
                     return response.json();
                 })
                 .then(data => {
+                    if (!data || !data.title || !data.body) {
+                        throw new Error('Invalid content in language file');
+                    }
                     document.getElementById('site-title').innerText = data.title;
-                    document.getElementById('description').innerText = data.description;
-                    document.getElementById('dynamic-content-title').innerText = data.dynamicContentTitle;
-
-                    const content = `<p class="body">${data.body.replace(/\n/g, '<br>')}</p>`;
-                    document.getElementById('content').innerHTML = content;
+                    document.getElementById('content').innerHTML = `<p class="body">${data.body.replace(/\n/g, '<br>')}</p>`;
                 })
                 .catch(error => {
                     console.error('Error loading language file:', error);
