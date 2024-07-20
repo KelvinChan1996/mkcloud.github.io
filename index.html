@@ -5,12 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MKCloud</title>
     <style>
-        /* 添加样式 */
-        .dropdown {
+        /* 基本样式 */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header a {
+            text-decoration: none;
+            color: #000;
+        }
+        .dropdown, .menu {
             margin-bottom: 20px;
         }
-        .login-form {
-            display: none; /* 默认隐藏登录表单 */
+        .login-form, .signup-form {
+            display: none; /* 默认隐藏表单 */
         }
         .body {
             white-space: pre-wrap; /* 保留换行符 */
@@ -18,29 +35,54 @@
         .error {
             color: red;
         }
+        .menu {
+            display: flex;
+            gap: 15px;
+        }
+        .menu a {
+            text-decoration: none;
+            color: #000;
+        }
     </style>
 </head>
 <body>
-    <h1><a href="https://kelvinchan1996.github.io/mkcloud.github.io/" id="site-title">MKCloud</a></h1>
-    <p id="description">This is the main domain.</p>
-    
-    <div class="dropdown">
-        <label for="language">选择语言:</label>
-        <select id="language">
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="cn">中文</option>
-        </select>
+    <div class="header">
+        <h1><a href="https://kelvinchan1996.github.io/mkcloud.github.io/" id="site-title">MKCloud</a></h1>
+        <div class="menu">
+            <a href="#home">Home</a>
+            <a href="#information">Information</a>
+            <a href="#contact-us">Contact Us</a>
+            <div class="dropdown">
+                <label for="language">语言:</label>
+                <select id="language">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="cn">中文</option>
+                </select>
+            </div>
+            <button onclick="toggleLoginForm()">Login</button>
+            <button onclick="toggleSignupForm()">Signup</button>
+        </div>
     </div>
 
+    <p id="description">This is the main domain.</p>
+    
     <h2 id="dynamic-content-title">Dynamic Content Example</h2>
     <div id="content" class="loading">Loading...</div>
 
     <div class="login-form" id="login-form">
-        <h2>登录</h2>
-        <input type="text" id="username" placeholder="用户名">
-        <input type="password" id="password" placeholder="密码">
-        <button onclick="login()">登录</button>
+        <h2>Login</h2>
+        <input type="text" id="login-username" placeholder="Username">
+        <input type="password" id="login-password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div class="signup-form" id="signup-form">
+        <h2>Signup</h2>
+        <input type="text" id="signup-username" placeholder="Username">
+        <input type="password" id="signup-password" placeholder="Password">
+        <input type="email" id="signup-email" placeholder="Email">
+        <button onclick="signup()">Signup</button>
     </div>
 
     <script>
@@ -76,10 +118,28 @@
         }
 
         function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
             // 执行登录逻辑（例如，服务器验证）
             alert(`登录用户名: ${username}`);
+        }
+
+        function signup() {
+            const username = document.getElementById('signup-username').value;
+            const password = document.getElementById('signup-password').value;
+            const email = document.getElementById('signup-email').value;
+            // 执行注册逻辑（例如，服务器验证）
+            alert(`注册用户名: ${username}\n邮箱: ${email}`);
+        }
+
+        function toggleLoginForm() {
+            const loginForm = document.getElementById('login-form');
+            loginForm.style.display = loginForm.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleSignupForm() {
+            const signupForm = document.getElementById('signup-form');
+            signupForm.style.display = signupForm.style.display === 'block' ? 'none' : 'block';
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -89,10 +149,8 @@
             document.getElementById('language').value = defaultLang;
             loadLanguage(defaultLang);
 
-            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('language').addEventListener('change', setLanguage);
         });
-
-        document.getElementById('language').addEventListener('change', setLanguage);
     </script>
 </body>
 </html>
