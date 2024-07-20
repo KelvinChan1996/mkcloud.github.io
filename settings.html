@@ -15,7 +15,8 @@
             background-color: #f4f4f4;
         }
         .header {
-            width: 100%;
+            width: 80%; /* Adjusted to 80% of the viewport width */
+            max-width: 1200px; /* Maximum width to maintain good appearance on large screens */
             background-color: #333;
             color: white;
             display: flex;
@@ -24,7 +25,7 @@
             padding: 10px 20px;
             position: fixed;
             top: 0;
-            left: 0;
+            left: 10%; /* Center align by adjusting the left margin */
             z-index: 1000;
             transition: top 0.3s;
         }
@@ -38,8 +39,8 @@
         }
         .content {
             display: flex;
-            width: 100%;
-            max-width: 1200px;
+            width: 80%; /* Adjusted to 80% of the viewport width */
+            max-width: 1200px; /* Maximum width to maintain good appearance on large screens */
             margin-top: 80px; /* Adjusted for the fixed header */
             padding: 20px;
             background-color: white;
@@ -48,13 +49,12 @@
             box-sizing: border-box;
         }
         .sidebar {
-            width: 250px;
+            width: 300px; /* Increased sidebar width */
             margin-right: 20px;
             background-color: #f9f9f9;
             padding: 15px;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: relative; /* Ensures the sidebar doesn't move */
         }
         .sidebar h3 {
             margin-top: 0;
@@ -80,6 +80,7 @@
             display: flex;
             flex-direction: column;
             margin-bottom: 20px;
+            width: 120%; /* Increased form container width */
         }
         .form-container label {
             margin: 5px 0 2px;
@@ -133,7 +134,8 @@
             background-color: #0056b3;
         }
         .footer {
-            width: 100%;
+            width: 80%; /* Adjusted to 80% of the viewport width */
+            max-width: 1200px; /* Maximum width to maintain good appearance on large screens */
             background-color: #333;
             color: white;
             text-align: center;
@@ -141,6 +143,7 @@
             position: relative;
             bottom: 0;
             box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -249,13 +252,14 @@
                 <label for="backup-frequency">Backup Frequency:</label>
                 <select id="backup-frequency">
                     <option value="daily">Daily</option>
-                    <!-- Add other options as needed -->
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
                 </select>
                 
                 <label for="restore-options">Restore Options:</label>
                 <select id="restore-options">
                     <option value="latest">Latest Backup</option>
-                    <!-- Add other options as needed -->
+                    <option value="specific">Specific Backup</option>
                 </select>
                 
                 <button type="button" onclick="updateBackupRestore()">Update Backup and Restore</button>
