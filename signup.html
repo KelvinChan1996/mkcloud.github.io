@@ -5,14 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - MKCloud</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to right, #ece9e6, #ffffff);
+            background: url('https://example.com/background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
         }
         .header {
             width: 100%;
@@ -22,9 +35,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
         }
         .header h1 {
             margin: 0;
@@ -34,6 +46,10 @@
             color: white;
             text-decoration: none;
         }
+        .header-links {
+            display: flex;
+            align-items: center;
+        }
         .header-links a {
             color: white;
             text-decoration: none;
@@ -41,13 +57,7 @@
             font-size: 16px;
         }
         .content {
-            margin-top: 80px; /* Adjusted for the fixed header */
-            width: 100%;
-            max-width: 600px;
-            background: white;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 10px;
         }
         .form-container {
             display: flex;
@@ -93,63 +103,64 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>MKCloud</h1>
-        <div class="header-links">
-            <a href="https://kelvinchan1996.github.io/mkcloud.github.io/index.html">Return</a>
+    <div class="overlay">
+        <div class="header">
+            <h1>MKCloud</h1>
+            <div class="header-links">
+                <a href="https://kelvinchan1996.github.io/mkcloud.github.io/index.html">Return</a>
+            </div>
         </div>
-    </div>
+        <div class="content">
+            <h2>Sign Up</h2>
+            <div class="form-container">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" placeholder="First Name">
 
-    <div class="content">
-        <h2>Sign Up</h2>
-        <div class="form-container">
-            <label for="first-name">First Name:</label>
-            <input type="text" id="first-name" placeholder="First Name">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" placeholder="Last Name">
 
-            <label for="last-name">Last Name:</label>
-            <input type="text" id="last-name" placeholder="Last Name">
+                <label for="username">User Name:</label>
+                <input type="text" id="username" placeholder="User Name">
 
-            <label for="username">User Name:</label>
-            <input type="text" id="username" placeholder="User Name">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Email">
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" placeholder="Email">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Password">
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" placeholder="Password">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" placeholder="Confirm Password">
 
-            <label for="confirm-password">Confirm Password:</label>
-            <input type="password" id="confirm-password" placeholder="Confirm Password">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" placeholder="Phone">
 
-            <label for="phone">Phone:</label>
-            <input type="text" id="phone" placeholder="Phone">
+                <label for="street1">Street 1:</label>
+                <input type="text" id="street1" placeholder="Street 1">
 
-            <label for="street1">Street 1:</label>
-            <input type="text" id="street1" placeholder="Street 1">
+                <label for="street2">Street 2:</label>
+                <input type="text" id="street2" placeholder="Street 2">
 
-            <label for="street2">Street 2:</label>
-            <input type="text" id="street2" placeholder="Street 2">
+                <label for="post-code">Post Code:</label>
+                <input type="text" id="post-code" placeholder="Post Code">
 
-            <label for="post-code">Post Code:</label>
-            <input type="text" id="post-code" placeholder="Post Code">
+                <label for="city">City:</label>
+                <input type="text" id="city" placeholder="City">
 
-            <label for="city">City:</label>
-            <input type="text" id="city" placeholder="City">
+                <label for="state">State:</label>
+                <input type="text" id="state" placeholder="State">
 
-            <label for="state">State:</label>
-            <input type="text" id="state" placeholder="State">
+                <label for="country">Country:</label>
+                <select id="country">
+                    <option value="">Select Country</option>
+                    <!-- Add more country options here -->
+                </select>
 
-            <label for="country">Country:</label>
-            <select id="country">
-                <option value="">Select Country</option>
-                <!-- Add more country options here -->
-            </select>
+                <button type="button" onclick="signup()">Sign Up</button>
+            </div>
 
-            <button type="button" onclick="signup()">Sign Up</button>
-        </div>
-
-        <div class="form-footer">
-            <p>Already have an account? <a href="login.html">Sign In</a></p>
+            <div class="form-footer">
+                <p>Already have an account? <a href="login.html">Sign In</a></p>
+            </div>
         </div>
     </div>
 
