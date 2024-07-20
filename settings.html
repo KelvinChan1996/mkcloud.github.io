@@ -4,7 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - MKCloud</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: width 0.3s ease;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+
+        .header .menu-button {
+            font-size: 24px;
+            cursor: pointer;
+            display: block;
+        }
+
+        .header .menu-button::before {
+            content: "\2630"; /* Unicode character for hamburger menu */
+        }
+
+        .header .site-title {
+            flex: 1;
+            text-align: center;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .header .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .search-container button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .header .search-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .header .search-container button::before {
+            content: "\1F50D"; /* Unicode character for magnifying glass */
+            font-size: 20px;
+        }
+
+        .header .search-container input {
+            display: none;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        .header .search-container.show input {
+            display: block;
+        }
+
+        .content {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 80px; /* Adjusted margin to create space between header and content */
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-sizing: border-box;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .main-content {
+            flex: 1;
+            box-sizing: border-box;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-container label {
+            margin: 5px 0 2px;
+            font-weight: bold;
+        }
+
+        .form-container input, .form-container select {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            width: 100%; /* Full width */
+            max-width: 1200px; /* Same as header */
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 5px; /* Reduced padding for height reduction */
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
@@ -83,9 +275,8 @@
                 <h2 id="notification-settings">Notification Settings</h2>
                 <label for="email-notifications">Email Notifications:</label>
                 <select id="email-notifications">
-                    <option value="all">All</option>
-                    <option value="important">Important Only</option>
-                    <option value="none">None</option>
+                    <option value="enabled">Enabled</option>
+                    <option value="disabled">Disabled</option>
                 </select>
                 
                 <label for="sms-notifications">SMS Notifications:</label>
@@ -99,15 +290,14 @@
 
             <div class="form-container">
                 <h2 id="backup-restore">Backup and Restore</h2>
-                <label for="backup-schedule">Backup Schedule:</label>
-                <select id="backup-schedule">
+                <label for="backup-frequency">Backup Frequency:</label>
+                <select id="backup-frequency">
                     <option value="daily">Daily</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
+                    <!-- Add other options as needed -->
                 </select>
                 
-                <label for="restore-point">Restore Point:</label>
-                <select id="restore-point">
+                <label for="restore-options">Restore Options:</label>
+                <select id="restore-options">
                     <option value="latest">Latest</option>
                     <!-- Add other options as needed -->
                 </select>
@@ -118,13 +308,37 @@
     </div>
 
     <div class="footer">
-        <p>&copy; 2024 MKCloud. All rights reserved.</p>
+        &copy; 2024 MKCloud. All rights reserved.
     </div>
 
     <script>
-        document.getElementById('search-button').addEventListener('click', function() {
-            document.querySelector('.search-container').classList.toggle('show');
+        document.getElementById('menu-button').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
         });
+
+        document.getElementById('search-button').addEventListener('click', function() {
+            document.querySelector('.header .search-container').classList.toggle('show');
+        });
+
+        function updateAccountSettings() {
+            alert('Account settings updated!');
+        }
+
+        function updateServiceConfiguration() {
+            alert('Service configuration updated!');
+        }
+
+        function updateSecuritySettings() {
+            alert('Security settings updated!');
+        }
+
+        function updateNotificationSettings() {
+            alert('Notification settings updated!');
+        }
+
+        function updateBackupRestore() {
+            alert('Backup and restore settings updated!');
+        }
     </script>
 </body>
 </html>
