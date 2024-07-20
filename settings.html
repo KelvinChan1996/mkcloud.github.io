@@ -108,6 +108,11 @@
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             box-sizing: border-box;
+            display: none; /* Initially hidden */
+        }
+
+        .sidebar.active {
+            display: block;
         }
 
         .sidebar h3 {
@@ -199,7 +204,7 @@
     </div>
 
     <div class="content">
-        <div class="sidebar">
+        <div class="sidebar" id="sidebar">
             <h3>Settings Menu</h3>
             <ul>
                 <li><a href="#account-settings">Account Settings</a></li>
@@ -217,95 +222,71 @@
             </ul>
         </div>
         <div class="main-content">
-            <div class="form-container">
-                <h2 id="account-settings">Account Settings</h2>
+            <div id="account-settings" class="form-container">
+                <h2>Account Settings</h2>
                 <label for="api-key">API Key:</label>
                 <input type="text" id="api-key" value="Your API Key" disabled>
-                
-                <label for="account-quota">Account Quota:</label>
-                <input type="text" id="account-quota" value="Current Quota" disabled>
-                
-                <label for="reset-password">Reset Password:</label>
-                <input type="password" id="reset-password" placeholder="New password">
-                
+                <label for="quota">Account Quota:</label>
+                <input type="text" id="quota" value="Current Quota" disabled>
+                <label for="new-password">Reset Password:</label>
+                <input type="password" id="new-password" placeholder="New password">
                 <label for="confirm-password">Confirm Password:</label>
                 <input type="password" id="confirm-password" placeholder="Confirm new password">
-                
-                <button type="button" onclick="updateAccountSettings()">Update Account Settings</button>
+                <button type="button">Update Account Settings</button>
             </div>
 
-            <div class="form-container">
-                <h2 id="service-configuration">Service Configuration</h2>
+            <div id="service-configuration" class="form-container">
+                <h2>Service Configuration</h2>
                 <label for="storage-option">Storage Option:</label>
                 <select id="storage-option">
-                    <option value="standard">Standard</option>
-                    <!-- Add other options as needed -->
+                    <option>Standard</option>
                 </select>
-                
                 <label for="compute-resources">Compute Resources:</label>
                 <select id="compute-resources">
-                    <option value="small">Small</option>
-                    <!-- Add other options as needed -->
+                    <option>Small</option>
                 </select>
-                
-                <button type="button" onclick="updateServiceConfiguration()">Update Service Configuration</button>
+                <button type="button">Update Service Configuration</button>
             </div>
 
-            <div class="form-container">
-                <h2 id="security-settings">Security Settings</h2>
+            <div id="security-settings" class="form-container">
+                <h2>Security Settings</h2>
                 <label for="two-factor-auth">Two-Factor Authentication:</label>
-                <select id="two-factor-auth">
-                    <option value="enabled">Enabled</option>
-                    <option value="disabled">Disabled</option>
-                </select>
-                
+                <input type="text" id="two-factor-auth" value="Enabled" disabled>
                 <label for="account-roles">Account Roles:</label>
                 <select id="account-roles">
-                    <option value="admin">Admin</option>
-                    <!-- Add other roles as needed -->
+                    <option>Admin</option>
                 </select>
-                
-                <button type="button" onclick="updateSecuritySettings()">Update Security Settings</button>
+                <button type="button">Update Security Settings</button>
             </div>
 
-            <div class="form-container">
-                <h2 id="notification-settings">Notification Settings</h2>
+            <div id="notification-settings" class="form-container">
+                <h2>Notification Settings</h2>
                 <label for="email-notifications">Email Notifications:</label>
                 <select id="email-notifications">
-                    <option value="all">All</option>
-                    <option value="none">None</option>
+                    <option>All</option>
                 </select>
-                
                 <label for="sms-notifications">SMS Notifications:</label>
-                <select id="sms-notifications">
-                    <option value="enabled">Enabled</option>
-                    <option value="disabled">Disabled</option>
-                </select>
-                
-                <button type="button" onclick="updateNotificationSettings()">Update Notification Settings</button>
+                <input type="text" id="sms-notifications" value="Enabled" disabled>
+                <button type="button">Update Notification Settings</button>
             </div>
 
-            <div class="form-container">
-                <h2 id="backup-restore">Backup and Restore</h2>
-                <label for="backup-frequency">Backup Frequency:</label>
-                <select id="backup-frequency">
-                    <option value="daily">Daily</option>
-                    <!-- Add other options as needed -->
+            <div id="backup-restore" class="form-container">
+                <h2>Backup and Restore</h2>
+                <label for="backup-schedule">Backup Schedule:</label>
+                <select id="backup-schedule">
+                    <option>Daily</option>
                 </select>
-                
-                <label for="restore-options">Restore Options:</label>
-                <select id="restore-options">
-                    <option value="latest">Latest</option>
-                    <!-- Add other options as needed -->
+                <label for="restore-point">Restore Point:</label>
+                <select id="restore-point">
+                    <option>Latest</option>
                 </select>
-                
-                <button type="button" onclick="updateBackupRestore()">Update Backup and Restore</button>
+                <button type="button">Update Backup and Restore</button>
             </div>
         </div>
     </div>
 
     <div class="footer">
-        &copy; 2024 MKCloud. All rights reserved.
+        <p>© 2024 MKCloud. All rights reserved.</p>
     </div>
 
     <script>
@@ -316,26 +297,6 @@
         document.getElementById('search-button').addEventListener('click', function() {
             document.querySelector('.header .search-container').classList.toggle('show');
         });
-
-        function updateAccountSettings() {
-            alert('Account settings updated!');
-        }
-
-        function updateServiceConfiguration() {
-            alert('Service configuration updated!');
-        }
-
-        function updateSecuritySettings() {
-            alert('Security settings updated!');
-        }
-
-        function updateNotificationSettings() {
-            alert('Notification settings updated!');
-        }
-
-        function updateBackupRestore() {
-            alert('Backup and restore settings updated!');
-        }
     </script>
 </body>
 </html>
