@@ -51,6 +51,14 @@
         .home-link:hover {
             text-decoration: underline;
         }
+        .title-link {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1.2em;
+        }
+        .title-link:hover {
+            text-decoration: underline;
+        }
         @media (max-width: 600px) {
             #content {
                 padding: 10px;
@@ -60,7 +68,7 @@
 </head>
 <body>
     <a href="https://kelvinchan1996.github.io/mkcloud.github.io/" class="home-link">MKCloud</a>
-    <h1>MKCloud</h1>
+    <h1><a href="https://kelvinchan1996.github.io/mkcloud.github.io/" class="title-link">MKCloud</a></h1>
     <p>This is the main domain.</p>
     <h2>Dynamic Content Example</h2>
     <div id="content" class="loading">Loading...</div>
@@ -75,7 +83,7 @@
                 })
                 .then(data => {
                     const content = `
-                        <p class="title">Title: ${data.title}</p>
+                        <p class="title">Title: <a href="https://kelvinchan1996.github.io/mkcloud.github.io/" class="title-link">${data.title}</a></p>
                         <p class="body">Body: ${data.body}</p>
                     `;
                     document.getElementById('content').innerHTML = content;
