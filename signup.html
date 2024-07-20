@@ -17,7 +17,7 @@
             background-color: #f4f4f4;
         }
         .signup-container {
-            width: 500px; /* 调整宽度 */
+            width: 600px; /* 调整宽度 */
             padding: 20px;
             background: white;
             border-radius: 8px;
@@ -43,10 +43,11 @@
             font-size: 16px;
         }
         .signup-form {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
             text-align: left;
+            margin-top: 20px;
         }
         .signup-form label {
             font-size: 14px;
@@ -61,6 +62,7 @@
             box-sizing: border-box;
         }
         .signup-form button {
+            grid-column: span 2; /* 按钮跨越两列 */
             padding: 10px;
             border: none;
             border-radius: 4px;
@@ -73,6 +75,7 @@
             background-color: #555;
         }
         .signup-form .link {
+            grid-column: span 2; /* 链接跨越两列 */
             display: block;
             margin-top: 10px;
             text-decoration: none;
@@ -96,51 +99,64 @@
         </div>
         <h2>Sign Up</h2>
         <div class="signup-form">
-            <label for="signup-first-name">First Name:</label>
-            <input type="text" id="signup-first-name" placeholder="First Name">
-            
-            <label for="signup-last-name">Last Name:</label>
-            <input type="text" id="signup-last-name" placeholder="Last Name">
-            
-            <label for="signup-username">User Name:</label>
-            <input type="text" id="signup-username" placeholder="User Name">
-            
-            <label for="signup-email">Email:</label>
-            <input type="email" id="signup-email" placeholder="Email">
-            
-            <label for="signup-password">Password:</label>
-            <input type="password" id="signup-password" placeholder="Password">
-            
-            <label for="signup-confirm-password">Confirm Password:</label>
-            <input type="password" id="signup-confirm-password" placeholder="Confirm Password">
-            
-            <label for="signup-phone">Phone:</label>
-            <input type="text" id="signup-phone" placeholder="Phone">
-            
-            <label for="signup-street1">Street 1:</label>
-            <input type="text" id="signup-street1" placeholder="Street 1">
-            
-            <label for="signup-street2">Street 2:</label>
-            <input type="text" id="signup-street2" placeholder="Street 2">
-            
-            <label for="signup-postcode">Post Code:</label>
-            <input type="text" id="signup-postcode" placeholder="Post Code">
-            
-            <label for="signup-city">City:</label>
-            <input type="text" id="signup-city" placeholder="City">
-            
-            <label for="signup-state">State:</label>
-            <input type="text" id="signup-state" placeholder="State">
-            
-            <label for="signup-country">Country:</label>
-            <select id="signup-country">
-                <option value="">Select Country</option>
-                <option value="us">United States</option>
-                <option value="cn">China</option>
-                <option value="uk">United Kingdom</option>
-                <!-- Add more countries as needed -->
-            </select>
-            
+            <div>
+                <label for="signup-first-name">First Name:</label>
+                <input type="text" id="signup-first-name" placeholder="First Name">
+            </div>
+            <div>
+                <label for="signup-last-name">Last Name:</label>
+                <input type="text" id="signup-last-name" placeholder="Last Name">
+            </div>
+            <div>
+                <label for="signup-username">User Name:</label>
+                <input type="text" id="signup-username" placeholder="User Name">
+            </div>
+            <div>
+                <label for="signup-email">Email:</label>
+                <input type="email" id="signup-email" placeholder="Email">
+            </div>
+            <div>
+                <label for="signup-password">Password:</label>
+                <input type="password" id="signup-password" placeholder="Password">
+            </div>
+            <div>
+                <label for="signup-confirm-password">Confirm Password:</label>
+                <input type="password" id="signup-confirm-password" placeholder="Confirm Password">
+            </div>
+            <div>
+                <label for="signup-phone">Phone:</label>
+                <input type="text" id="signup-phone" placeholder="Phone">
+            </div>
+            <div>
+                <label for="signup-street1">Street 1:</label>
+                <input type="text" id="signup-street1" placeholder="Street 1">
+            </div>
+            <div>
+                <label for="signup-street2">Street 2:</label>
+                <input type="text" id="signup-street2" placeholder="Street 2">
+            </div>
+            <div>
+                <label for="signup-postcode">Post Code:</label>
+                <input type="text" id="signup-postcode" placeholder="Post Code">
+            </div>
+            <div>
+                <label for="signup-city">City:</label>
+                <input type="text" id="signup-city" placeholder="City">
+            </div>
+            <div>
+                <label for="signup-state">State:</label>
+                <input type="text" id="signup-state" placeholder="State">
+            </div>
+            <div>
+                <label for="signup-country">Country:</label>
+                <select id="signup-country">
+                    <option value="">Select Country</option>
+                    <option value="us">United States</option>
+                    <option value="cn">China</option>
+                    <option value="uk">United Kingdom</option>
+                    <!-- Add more countries as needed -->
+                </select>
+            </div>
             <button onclick="signup()">Sign Up</button>
         </div>
     </div>
