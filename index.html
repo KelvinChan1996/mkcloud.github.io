@@ -26,6 +26,14 @@
             display: none;
             color: red;
         }
+        .more {
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .more:hover {
+            text-decoration: none;
+        }
     </style>
     <script>
         function loadData() {
@@ -36,9 +44,14 @@
                     const errorDiv = document.getElementById('error-message');
                     errorDiv.style.display = 'none';
                     contentDiv.style.display = 'block';
+                    
+                    // 只显示前100个字符，剩下的用“Read more”展示
+                    const truncatedText = data.body.substring(0, 100);
+                    const fullText = data.body;
+
                     contentDiv.innerHTML = `
                         <h2>${data.title}</h2>
-                        <p>${data.body.substring(0, 100)}... <a href="#" onclick="showFullText('${data.body}')">Read more</a></p>
+                        <p>${truncatedText}... <span class="more" onclick="showFullText('${fullText}')">Read more</span></p>
                         <div id="full-text" style="display: none;"></div>
                     `;
                 })
@@ -50,8 +63,9 @@
         }
 
         function showFullText(text) {
-            document.getElementById('full-text').innerText = text;
-            document.getElementById('full-text').style.display = 'block';
+            const fullTextDiv = document.getElementById('full-text');
+            fullTextDiv.innerText = text;
+            fullTextDiv.style.display = 'block';
         }
     </script>
 </head>
