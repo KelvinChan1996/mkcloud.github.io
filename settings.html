@@ -54,6 +54,7 @@
             padding: 15px;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative; /* Ensures the sidebar doesn't move */
         }
         .sidebar h3 {
             margin-top: 0;
@@ -78,6 +79,7 @@
         .form-container {
             display: flex;
             flex-direction: column;
+            margin-bottom: 20px;
         }
         .form-container label {
             margin: 5px 0 2px;
@@ -130,23 +132,41 @@
         .search-bar button:hover {
             background-color: #0056b3;
         }
+        .footer {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1><a href="index.html" id="site-title">MKCloud</a></h1>
         <button id="list-button">List</button>
+        <h1><a href="index.html" id="site-title">MKCloud</a></h1>
+        <div class="header-links">
+            <a href="index.html">Home</a>
+            <a href="info.html">Information</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="settings.html">Settings</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Signup</a>
+        </div>
     </div>
 
     <div class="content">
         <div class="sidebar">
-            <h3>Settings</h3>
+            <h3>Settings Menu</h3>
             <ul>
                 <li><a href="#account-settings">Account Settings</a></li>
-                <li><a href="#notification-settings">Notification Settings</a></li>
-                <li><a href="#privacy-settings">Privacy Settings</a></li>
+                <li><a href="#service-configuration">Service Configuration</a></li>
                 <li><a href="#security-settings">Security Settings</a></li>
-                <li><a href="#appearance-settings">Appearance Settings</a></li>
+                <li><a href="#notification-settings">Notification Settings</a></li>
+                <li><a href="#backup-restore">Backup and Restore</a></li>
             </ul>
         </div>
         <div class="main-content">
@@ -156,8 +176,11 @@
             </div>
             <div id="account-settings" class="form-container">
                 <h2>Account Settings</h2>
-                <label for="email">Email:</label>
-                <input type="email" id="email" placeholder="Your email address">
+                <label for="api-key">API Key:</label>
+                <input type="text" id="api-key" value="Your API Key" disabled>
+                
+                <label for="account-quota">Account Quota:</label>
+                <input type="text" id="account-quota" value="Current Quota" disabled>
                 
                 <label for="reset-password">Reset Password:</label>
                 <input type="password" id="reset-password" placeholder="New password">
@@ -166,6 +189,40 @@
                 <input type="password" id="confirm-password" placeholder="Confirm new password">
                 
                 <button type="button" onclick="updateAccountSettings()">Update Account Settings</button>
+            </div>
+
+            <div id="service-configuration" class="form-container">
+                <h2>Service Configuration</h2>
+                <label for="storage-option">Storage Option:</label>
+                <select id="storage-option">
+                    <option value="standard">Standard</option>
+                    <!-- Add other options as needed -->
+                </select>
+                
+                <label for="compute-resources">Compute Resources:</label>
+                <select id="compute-resources">
+                    <option value="small">Small</option>
+                    <!-- Add other options as needed -->
+                </select>
+                
+                <button type="button" onclick="updateServiceConfiguration()">Update Service Configuration</button>
+            </div>
+
+            <div id="security-settings" class="form-container">
+                <h2>Security Settings</h2>
+                <label for="two-factor-auth">Two-Factor Authentication:</label>
+                <select id="two-factor-auth">
+                    <option value="enabled">Enabled</option>
+                    <option value="disabled">Disabled</option>
+                </select>
+                
+                <label for="account-roles">Account Roles:</label>
+                <select id="account-roles">
+                    <option value="admin">Admin</option>
+                    <!-- Add other roles as needed -->
+                </select>
+                
+                <button type="button" onclick="updateSecuritySettings()">Update Security Settings</button>
             </div>
 
             <div id="notification-settings" class="form-container">
@@ -187,86 +244,53 @@
                 <button type="button" onclick="updateNotificationSettings()">Update Notification Settings</button>
             </div>
 
-            <div id="privacy-settings" class="form-container">
-                <h2>Privacy Settings</h2>
-                <label for="profile-visibility">Profile Visibility:</label>
-                <select id="profile-visibility">
-                    <option value="public">Public</option>
-                    <option value="friends">Friends Only</option>
-                    <option value="private">Private</option>
+            <div id="backup-restore" class="form-container">
+                <h2>Backup and Restore</h2>
+                <label for="backup-frequency">Backup Frequency:</label>
+                <select id="backup-frequency">
+                    <option value="daily">Daily</option>
+                    <!-- Add other options as needed -->
                 </select>
                 
-                <label for="search-engines">Allow Search Engines:</label>
-                <select id="search-engines">
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                <label for="restore-options">Restore Options:</label>
+                <select id="restore-options">
+                    <option value="latest">Latest Backup</option>
+                    <!-- Add other options as needed -->
                 </select>
                 
-                <button type="button" onclick="updatePrivacySettings()">Update Privacy Settings</button>
-            </div>
-
-            <div id="security-settings" class="form-container">
-                <h2>Security Settings</h2>
-                <label for="two-factor-auth">Two-Factor Authentication:</label>
-                <select id="two-factor-auth">
-                    <option value="enabled">Enabled</option>
-                    <option value="disabled">Disabled</option>
-                </select>
-                
-                <label for="change-password">Change Password:</label>
-                <input type="password" id="change-password" placeholder="Current password">
-                
-                <button type="button" onclick="updateSecuritySettings()">Update Security Settings</button>
-            </div>
-
-            <div id="appearance-settings" class="form-container">
-                <h2>Appearance Settings</h2>
-                <label for="theme">Theme:</label>
-                <select id="theme">
-                    <option value="light">Light</option>
-                    <option value="dark">Dark</option>
-                </select>
-                
-                <label for="font-size">Font Size:</label>
-                <select id="font-size">
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                </select>
-                
-                <button type="button" onclick="updateAppearanceSettings()">Update Appearance Settings</button>
+                <button type="button" onclick="updateBackupRestore()">Update Backup and Restore</button>
             </div>
         </div>
     </div>
 
+    <div class="footer">
+        <p>© 2024 MKCloud. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </div>
+
     <script>
         document.getElementById('list-button').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('show');
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
         });
 
         function updateAccountSettings() {
-            // Placeholder for updating account settings
             alert('Account settings updated');
         }
 
-        function updateNotificationSettings() {
-            // Placeholder for updating notification settings
-            alert('Notification settings updated');
-        }
-
-        function updatePrivacySettings() {
-            // Placeholder for updating privacy settings
-            alert('Privacy settings updated');
+        function updateServiceConfiguration() {
+            alert('Service configuration updated');
         }
 
         function updateSecuritySettings() {
-            // Placeholder for updating security settings
             alert('Security settings updated');
         }
 
-        function updateAppearanceSettings() {
-            // Placeholder for updating appearance settings
-            alert('Appearance settings updated');
+        function updateNotificationSettings() {
+            alert('Notification settings updated');
+        }
+
+        function updateBackupRestore() {
+            alert('Backup and restore settings updated');
         }
     </script>
 </body>
