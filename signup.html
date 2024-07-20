@@ -59,6 +59,17 @@
             margin: 5px 0 2px;
             font-weight: bold;
         }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-row .form-group {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .form-row .form-group:last-child {
+            margin-right: 0;
+        }
         .form-container input, .form-container select {
             margin-bottom: 15px;
             padding: 10px;
@@ -105,14 +116,20 @@
     <div class="content">
         <h2>Sign Up</h2>
         <div class="form-container">
-            <label for="first-name">First Name:</label>
-            <input type="text" id="first-name" placeholder="First Name">
-
-            <label for="last-name">Last Name:</label>
-            <input type="text" id="last-name" placeholder="Last Name">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" placeholder="Last Name">
+                </div>
+            </div>
 
             <label for="username">User Name:</label>
-            <input type="text" id="username" placeholder="User Name">
+            <input type="text" id="username" placeholder="User Name" onblur="checkUsername()">
+            <span id="username-status" style="color: red; display: none;">Username already taken</span>
 
             <label for="email">Email:</label>
             <input type="email" id="email" placeholder="Email">
@@ -156,6 +173,20 @@
     </div>
 
     <script>
+        function checkUsername() {
+            const username = document.getElementById('username').value;
+            const status = document.getElementById('username-status');
+
+            // Placeholder for actual username validation logic
+            const usernamesTaken = ['user1', 'user2', 'user3']; // Example list
+
+            if (usernamesTaken.includes(username)) {
+                status.style.display = 'inline';
+            } else {
+                status.style.display = 'none';
+            }
+        }
+
         function signup() {
             // Placeholder for signup logic
             alert('Sign Up form submitted');
