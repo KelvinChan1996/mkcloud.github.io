@@ -9,10 +9,6 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             background-color: #f4f4f4;
         }
         .header {
@@ -20,12 +16,13 @@
             padding: 10px;
             background: #333;
             color: white;
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1000;
         }
         .header h1 {
             margin: 0;
@@ -54,7 +51,8 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-top: 60px;
+            margin: 100px auto 0;
+            position: relative;
         }
         .signup-header {
             margin-bottom: 20px;
