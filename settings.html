@@ -10,12 +10,41 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             background-color: #f4f4f4;
         }
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            padding: 20px;
+            overflow-y: auto;
+            transition: transform 0.3s;
+            transform: translateX(-250px); /* Initially hidden */
+        }
+        .sidebar.active {
+            transform: translateX(0); /* Show when active */
+        }
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #575757;
+        }
         .header {
-            width: 100%;
+            width: calc(100% - 250px);
             background-color: #333;
             color: white;
             display: flex;
@@ -24,9 +53,16 @@
             padding: 10px 20px;
             position: fixed;
             top: 0;
-            left: 0;
+            left: 250px;
             z-index: 1000;
-            transition: top 0.3s;
+            transition: width 0.3s, left 0.3s;
+        }
+        .header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
         }
         .header a {
             color: white;
@@ -38,25 +74,61 @@
             text-decoration: underline;
         }
         .content {
-            margin-top: 80px; /* Adjusted for the fixed header */
-            width: 100%;
-            max-width: 800px;
+            margin-top: 60px; /* Adjusted for the fixed header */
+            margin-left: 250px; /* Space for sidebar */
+            width: calc(100% - 250px);
+            max-width: 1200px;
             background: white;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             border-radius: 10px;
-            text-align: left;
+            overflow: hidden;
         }
-        h2 {
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .settings-layout {
+            display: flex;
+        }
+        .settings-menu {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 10px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            border-right: 1px solid #ccc;
+        }
+        .settings-menu h3 {
+            margin-top: 0;
+        }
+        .settings-menu a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .settings-menu a:hover {
+            background-color: #ddd;
+        }
+        .settings-content {
+            flex: 1;
+            padding: 20px;
+        }
+        .settings-content h4 {
             margin-top: 0;
             color: #333;
         }
         .settings-section {
             margin-bottom: 20px;
-        }
-        .settings-section h3 {
-            margin-top: 0;
-            color: #555;
         }
         .settings-section label {
             display: block;
@@ -99,9 +171,26 @@
     </style>
 </head>
 <body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="#" id="toggle-sidebar">☰ Menu</a>
+        <a href="index.html">Home</a>
+        <a href="info.html">Information</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="settings.html">Settings</a>
+        <a href="login.html">Login</a>
+        <a href="signup.html">Signup</a>
+        <h3>Settings</h3>
+        <a href="#account">Account Settings</a>
+        <a href="#service">Service Configuration</a>
+        <a href="#security">Security Settings</a>
+        <a href="#notification">Notification Settings</a>
+        <a href="#backup">Backup and Restore</a>
+    </div>
+
     <div class="header">
-        <h1><a href="index.html" id="site-title">MKCloud</a></h1>
-        <div class="header-links">
+        <button id="list-button">☰</button>
+        <div>
             <a href="index.html">Home</a>
             <a href="info.html">Information</a>
             <a href="contact.html">Contact Us</a>
@@ -112,100 +201,114 @@
     </div>
 
     <div class="content">
-        <h2>Settings</h2>
-        
-        <!-- Account Settings Section -->
-        <div class="settings-section">
-            <h3>Account Settings</h3>
-            <label for="api-key">API Key:</label>
-            <input type="text" id="api-key" placeholder="Your API Key">
-            
-            <label for="account-quota">Account Quota:</label>
-            <input type="text" id="account-quota" placeholder="Current Quota">
+        <div class="search-bar">
+            <input type="text" id="search-settings" placeholder="Search settings...">
         </div>
         
-        <!-- Service Configuration Section -->
-        <div class="settings-section">
-            <h3>Service Configuration</h3>
-            <label for="storage-option">Storage Option:</label>
-            <select id="storage-option">
-                <option value="standard">Standard</option>
-                <option value="archival">Archival</option>
-                <option value="premium">Premium</option>
-            </select>
-            
-            <label for="compute-resources">Compute Resources:</label>
-            <select id="compute-resources">
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-            </select>
+        <div class="settings-layout">
+            <div class="settings-menu">
+                <h3>Settings</h3>
+                <a href="#account">Account Settings</a>
+                <a href="#service">Service Configuration</a>
+                <a href="#security">Security Settings</a>
+                <a href="#notification">Notification Settings</a>
+                <a href="#backup">Backup and Restore</a>
+            </div>
+            <div class="settings-content">
+                <div id="account" class="settings-section">
+                    <h4>Account Settings</h4>
+                    <label for="api-key">API Key:</label>
+                    <input type="text" id="api-key" placeholder="Your API Key">
+                    
+                    <label for="account-quota">Account Quota:</label>
+                    <input type="text" id="account-quota" placeholder="Current Quota">
+                    
+                    <label for="reset-password">Reset Password:</label>
+                    <button type="button" onclick="resetPassword()">Reset Password</button>
+                </div>
+                
+                <div id="service" class="settings-section">
+                    <h4>Service Configuration</h4>
+                    <label for="storage-option">Storage Option:</label>
+                    <select id="storage-option">
+                        <option value="standard">Standard</option>
+                        <option value="archival">Archival</option>
+                        <option value="premium">Premium</option>
+                    </select>
+                    
+                    <label for="compute-resources">Compute Resources:</label>
+                    <select id="compute-resources">
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                    </select>
+                </div>
+                
+                <div id="security" class="settings-section">
+                    <h4>Security Settings</h4>
+                    <label for="ip-whitelist">IP Whitelist:</label>
+                    <input type="text" id="ip-whitelist" placeholder="Enter IP addresses separated by commas">
+                    
+                    <label for="permissions">Permissions:</label>
+                    <select id="permissions">
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                        <option value="guest">Guest</option>
+                    </select>
+                </div>
+                
+                <div id="notification" class="settings-section">
+                    <h4>Notification Settings</h4>
+                    <label for="email-notifications">Email Notifications:</label>
+                    <input type="checkbox" id="email-notifications">
+                    
+                    <label for="sms-notifications">SMS Notifications:</label>
+                    <input type="checkbox" id="sms-notifications">
+                </div>
+                
+                <div id="backup" class="settings-section">
+                    <h4>Backup and Restore</h4>
+                    <label for="backup-frequency">Backup Frequency:</label>
+                    <select id="backup-frequency">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                    
+                    <label for="restore-options">Restore Options:</label>
+                    <select id="restore-options">
+                        <option value="latest">Latest Backup</option>
+                        <option value="custom">Custom Backup</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        
-        <!-- Security Settings Section -->
-        <div class="settings-section">
-            <h3>Security Settings</h3>
-            <label for="ip-whitelist">IP Whitelist:</label>
-            <input type="text" id="ip-whitelist" placeholder="Enter IP addresses separated by commas">
-            
-            <label for="permissions">Permissions:</label>
-            <select id="permissions">
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
-                <option value="guest">Guest</option>
-            </select>
-        </div>
-        
-        <!-- Notification Settings Section -->
-        <div class="settings-section">
-            <h3>Notification Settings</h3>
-            <label for="alerts">Alerts:</label>
-            <select id="alerts">
-                <option value="all">All Alerts</option>
-                <option value="critical">Critical Alerts</option>
-                <option value="none">No Alerts</option>
-            </select>
-            
-            <label for="event-notifications">Event Notifications:</label>
-            <select id="event-notifications">
-                <option value="all">All Events</option>
-                <option value="important">Important Events</option>
-                <option value="none">No Events</option>
-            </select>
-        </div>
-        
-        <!-- Backup and Restore Section -->
-        <div class="settings-section">
-            <h3>Backup and Restore</h3>
-            <label for="backup-frequency">Backup Frequency:</label>
-            <select id="backup-frequency">
-                <option value="daily">Daily</option>
-                <option value="weekly">Weekly</option>
-                <option value="monthly">Monthly</option>
-            </select>
-            
-            <label for="restore-options">Restore Options:</label>
-            <select id="restore-options">
-                <option value="latest">Latest Backup</option>
-                <option value="specific">Specific Date</option>
-                <option value="manual">Manual Restore</option>
-            </select>
-        </div>
-        
-        <div class="settings-section">
-            <button type="button" onclick="saveSettings()">Save Changes</button>
-        </div>
-    </div>
 
-    <div class="footer">
-        <p><a href="index.html">Return to Home</a></p>
+        <div class="footer">
+            <p>&copy; 2024 MKCloud. All rights reserved. <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
     </div>
 
     <script>
-        function saveSettings() {
-            // Placeholder for saving settings logic
-            alert('Settings saved successfully!');
+        document.getElementById('list-button').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        function resetPassword() {
+            alert('Password reset functionality will be implemented here.');
         }
+
+        document.getElementById('search-settings').addEventListener('input', function(event) {
+            const searchTerm = event.target.value.toLowerCase();
+            document.querySelectorAll('.settings-section').forEach(section => {
+                const sectionText = section.textContent.toLowerCase();
+                if (sectionText.includes(searchTerm)) {
+                    section.style.display = '';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>
