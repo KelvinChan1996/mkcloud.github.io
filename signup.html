@@ -17,7 +17,7 @@
             background-color: #f4f4f4;
         }
         .signup-container {
-            width: 300px;
+            width: 350px;
             padding: 20px;
             background: white;
             border-radius: 8px;
@@ -33,27 +33,30 @@
             font-size: 18px;
         }
         .signup-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
             width: 100%;
         }
         .signup-form label {
-            width: 100%;
             text-align: left;
-            margin-bottom: 5px;
             font-size: 14px;
         }
         .signup-form input {
             width: 100%;
             padding: 10px;
-            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .signup-form select {
+            width: 100%;
+            padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
             box-sizing: border-box;
         }
         .signup-form button {
-            width: 100%;
             padding: 10px;
             border: none;
             border-radius: 4px;
@@ -97,8 +100,29 @@
             <label for="signup-phone">Phone:</label>
             <input type="text" id="signup-phone" placeholder="Phone">
             
-            <label for="signup-address">Address:</label>
-            <input type="text" id="signup-address" placeholder="Address">
+            <label for="signup-street1">Street 1:</label>
+            <input type="text" id="signup-street1" placeholder="Street 1">
+            
+            <label for="signup-street2">Street 2:</label>
+            <input type="text" id="signup-street2" placeholder="Street 2">
+            
+            <label for="signup-postcode">Post Code:</label>
+            <input type="text" id="signup-postcode" placeholder="Post Code">
+            
+            <label for="signup-city">City:</label>
+            <input type="text" id="signup-city" placeholder="City">
+            
+            <label for="signup-state">State:</label>
+            <input type="text" id="signup-state" placeholder="State">
+            
+            <label for="signup-country">Country:</label>
+            <select id="signup-country">
+                <option value="">Select Country</option>
+                <option value="us">United States</option>
+                <option value="cn">China</option>
+                <option value="uk">United Kingdom</option>
+                <!-- Add more countries as needed -->
+            </select>
             
             <button onclick="signup()">Sign Up</button>
             <a href="login.html" class="link">Login</a>
@@ -112,7 +136,12 @@
             const password = document.getElementById('signup-password').value;
             const confirmPassword = document.getElementById('signup-confirm-password').value;
             const phone = document.getElementById('signup-phone').value;
-            const address = document.getElementById('signup-address').value;
+            const street1 = document.getElementById('signup-street1').value;
+            const street2 = document.getElementById('signup-street2').value;
+            const postcode = document.getElementById('signup-postcode').value;
+            const city = document.getElementById('signup-city').value;
+            const state = document.getElementById('signup-state').value;
+            const country = document.getElementById('signup-country').value;
 
             // 简单验证
             if (password !== confirmPassword) {
@@ -121,7 +150,7 @@
             }
 
             // 执行注册逻辑（例如，服务器验证）
-            alert(`Sign Up\nUser Name: ${username}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}`);
+            alert(`Sign Up\nUser Name: ${username}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${street1}, ${street2}, ${postcode}, ${city}, ${state}, ${country}`);
         }
     </script>
 </body>
