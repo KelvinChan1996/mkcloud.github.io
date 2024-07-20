@@ -17,16 +17,28 @@
             background-color: #f4f4f4;
         }
         .signup-container {
-            width: 400px;
+            width: 500px; /* 调整宽度 */
             padding: 20px;
             background: white;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        .signup-container h1 {
-            margin: 0 0 20px 0;
+        .signup-header {
+            margin-bottom: 20px;
+        }
+        .signup-header h1 {
+            margin: 0;
             font-size: 24px;
+        }
+        .signup-header .links {
+            margin-top: 10px;
+        }
+        .signup-header .links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
         }
         .signup-form {
             display: flex;
@@ -72,9 +84,22 @@
 </head>
 <body>
     <div class="signup-container">
-        <h1>MKCloud</h1>
-        <p>Sign up for an account</p>
+        <div class="signup-header">
+            <h1>MKCloud</h1>
+            <div class="links">
+                <a href="signup.html">Signup</a>
+                <span>|</span>
+                <a href="login.html">Sign In</a>
+            </div>
+        </div>
+        <h2>Sign Up</h2>
         <div class="signup-form">
+            <label for="signup-first-name">First Name:</label>
+            <input type="text" id="signup-first-name" placeholder="First Name">
+            
+            <label for="signup-last-name">Last Name:</label>
+            <input type="text" id="signup-last-name" placeholder="Last Name">
+            
             <label for="signup-username">User Name:</label>
             <input type="text" id="signup-username" placeholder="User Name">
             
@@ -115,12 +140,13 @@
             </select>
             
             <button onclick="signup()">Sign Up</button>
-            <a href="login.html" class="link">Login</a>
         </div>
     </div>
 
     <script>
         function signup() {
+            const firstName = document.getElementById('signup-first-name').value;
+            const lastName = document.getElementById('signup-last-name').value;
             const username = document.getElementById('signup-username').value;
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
@@ -140,7 +166,7 @@
             }
 
             // 执行注册逻辑（例如，服务器验证）
-            alert(`Sign Up\nUser Name: ${username}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${street1}, ${street2}, ${postcode}, ${city}, ${state}, ${country}`);
+            alert(`Sign Up\nFirst Name: ${firstName}\nLast Name: ${lastName}\nUser Name: ${username}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${street1}, ${street2}, ${postcode}, ${city}, ${state}, ${country}`);
         }
     </script>
 </body>
