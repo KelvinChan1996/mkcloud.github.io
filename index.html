@@ -8,6 +8,8 @@
         /* 基本样式 */
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
         .header {
             display: flex;
@@ -15,6 +17,7 @@
             align-items: center;
             padding: 10px;
             background-color: #f4f4f4;
+            border-bottom: 1px solid #ddd;
         }
         .header h1 {
             margin: 0;
@@ -23,25 +26,34 @@
             text-decoration: none;
             color: #000;
         }
-        .dropdown, .menu {
-            margin-bottom: 20px;
-        }
-        .login-form, .signup-form {
-            display: none; /* 默认隐藏表单 */
-        }
-        .body {
-            white-space: pre-wrap; /* 保留换行符 */
-        }
-        .error {
-            color: red;
-        }
         .menu {
             display: flex;
             gap: 15px;
+            align-items: center;
         }
         .menu a {
             text-decoration: none;
             color: #000;
+        }
+        .dropdown {
+            margin-left: 20px;
+        }
+        .login-form, .signup-form {
+            display: none; /* 默认隐藏表单 */
+            position: absolute;
+            right: 20px;
+            top: 60px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .body {
+            white-space: pre-wrap; /* 保留换行符 */
+            margin: 20px;
+        }
+        .error {
+            color: red;
         }
     </style>
 </head>
@@ -65,24 +77,26 @@
         </div>
     </div>
 
-    <p id="description">This is the main domain.</p>
-    
-    <h2 id="dynamic-content-title">Dynamic Content Example</h2>
-    <div id="content" class="loading">Loading...</div>
+    <div id="content">
+        <p id="description">This is the main domain.</p>
+        
+        <h2 id="dynamic-content-title">Dynamic Content Example</h2>
+        <div id="content" class="loading">Loading...</div>
 
-    <div class="login-form" id="login-form">
-        <h2>Login</h2>
-        <input type="text" id="login-username" placeholder="Username">
-        <input type="password" id="login-password" placeholder="Password">
-        <button onclick="login()">Login</button>
-    </div>
+        <div class="login-form" id="login-form">
+            <h2>登录</h2>
+            <input type="text" id="login-username" placeholder="用户名">
+            <input type="password" id="login-password" placeholder="密码">
+            <button onclick="login()">登录</button>
+        </div>
 
-    <div class="signup-form" id="signup-form">
-        <h2>Signup</h2>
-        <input type="text" id="signup-username" placeholder="Username">
-        <input type="password" id="signup-password" placeholder="Password">
-        <input type="email" id="signup-email" placeholder="Email">
-        <button onclick="signup()">Signup</button>
+        <div class="signup-form" id="signup-form">
+            <h2>注册</h2>
+            <input type="text" id="signup-username" placeholder="用户名">
+            <input type="password" id="signup-password" placeholder="密码">
+            <input type="email" id="signup-email" placeholder="电子邮件">
+            <button onclick="signup()">注册</button>
+        </div>
     </div>
 
     <script>
@@ -104,7 +118,7 @@
                     document.getElementById('dynamic-content-title').innerText = data.dynamicContentTitle;
 
                     const content = `<p class="body">${data.body.replace(/\n/g, '<br>')}</p>`;
-                    document.getElementById('content').innerHTML = content;
+                    document.getElementById('content').innerHTML += content;
                 })
                 .catch(error => {
                     console.error('Error loading language file:', error);
