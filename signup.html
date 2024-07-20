@@ -22,10 +22,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 6px 20px; /* Adjusted padding */
             position: fixed;
             top: 0;
             left: 0;
+            box-sizing: border-box;
+            overflow: hidden; /* Prevents content from being cut off */
         }
         .header h1 {
             margin: 0;
@@ -40,12 +42,11 @@
             text-decoration: none;
             margin-left: 20px;
             font-size: 16px;
-            /* Adjusted position of the return link */
             position: relative;
-            left: -5cm;
+            left: -50px; /* Adjusted to fit the return link */
         }
         .content {
-            margin-top: 80px; /* Adjusted for the fixed header */
+            margin-top: 60px; /* Adjusted for the fixed header */
             width: 100%;
             max-width: 600px;
             background: rgba(255, 255, 255, 0.9);
