@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - MKCloud</title>
     <style>
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -14,7 +15,6 @@
             align-items: center;
             background-color: #f4f4f4;
         }
-
         .header {
             width: 100%;
             background-color: #333;
@@ -31,29 +31,32 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             transition: width 0.3s ease;
         }
-
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .header a:hover {
+            text-decoration: underline;
+        }
         .header .menu-button {
             font-size: 24px;
             cursor: pointer;
             display: block;
         }
-
         .header .menu-button::before {
             content: "\2630"; /* Unicode character for hamburger menu */
         }
-
         .header .site-title {
             flex: 1;
             text-align: center;
             font-size: 24px;
             margin: 0;
         }
-
         .header .search-container {
             display: flex;
             align-items: center;
         }
-
         .header .search-container button {
             padding: 10px;
             font-size: 16px;
@@ -65,16 +68,13 @@
             margin-left: 10px;
             transition: background-color 0.3s ease;
         }
-
         .header .search-container button:hover {
             background-color: #0056b3;
         }
-
         .header .search-container button::before {
             content: "\1F50D"; /* Unicode character for magnifying glass */
             font-size: 20px;
         }
-
         .header .search-container input {
             display: none;
             padding: 10px;
@@ -83,16 +83,14 @@
             border-radius: 5px;
             margin-left: 10px;
         }
-
         .header .search-container.show input {
             display: block;
         }
-
         .content {
             display: flex;
             width: 100%;
             max-width: 1200px;
-            margin-top: 80px; /* Adjusted margin to create space between header and content */
+            margin-top: 80px;
             padding: 20px;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -100,48 +98,44 @@
             box-sizing: border-box;
             gap: 20px;
         }
-
         .sidebar {
-            width: 200px;
+            width: 300px;
             background-color: #f9f9f9;
             padding: 15px;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             box-sizing: border-box;
-            display: none; /* Initially hidden */
+            position: fixed;
+            top: 80px; /* Space below the header */
+            left: 0;
+            height: calc(100% - 80px);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
         }
-
         .sidebar.active {
-            display: block;
+            transform: translateX(0);
         }
-
         .sidebar h3 {
             margin-top: 0;
         }
-
         .sidebar ul {
             list-style-type: none;
             padding: 0;
         }
-
         .sidebar ul li {
             margin-bottom: 10px;
         }
-
         .sidebar ul li a {
             text-decoration: none;
             color: #007bff;
         }
-
         .sidebar ul li a:hover {
             text-decoration: underline;
         }
-
         .main-content {
             flex: 1;
             box-sizing: border-box;
         }
-
         .form-container {
             display: flex;
             flex-direction: column;
@@ -149,12 +143,10 @@
             width: 100%;
             box-sizing: border-box;
         }
-
         .form-container label {
             margin: 5px 0 2px;
             font-weight: bold;
         }
-
         .form-container input, .form-container select {
             margin-bottom: 15px;
             padding: 10px;
@@ -164,7 +156,6 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-
         .form-container button {
             padding: 10px;
             font-size: 16px;
@@ -175,18 +166,16 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
         .form-container button:hover {
             background-color: #0056b3;
         }
-
         .footer {
-            width: 100%; /* Full width */
-            max-width: 1200px; /* Same as header */
+            width: 100%;
+            max-width: 1200px;
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 5px; /* Reduced padding for height reduction */
+            padding: 5px;
             box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
             margin-top: 20px;
             box-sizing: border-box;
@@ -198,38 +187,39 @@
         <div class="menu-button" id="menu-button"></div>
         <h1 class="site-title">MKCloud</h1>
         <div class="search-container">
-            <button id="search-button" type="button"></button>
-            <input type="text" id="search-box" placeholder="Search settings...">
+            <button id="search-button"></button>
+            <input type="text" placeholder="Search settings...">
         </div>
     </div>
 
+    <div class="sidebar" id="sidebar">
+        <h3>List Menu</h3>
+        <ul>
+            <li><a href="index.html">Main</a></li>
+            <li><a href="#">Cloud</a></li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <h3>Settings Menu</h3>
+        <ul>
+            <li><a href="#account-settings">Account Settings</a></li>
+            <li><a href="#service-configuration">Service Configuration</a></li>
+            <li><a href="#security-settings">Security Settings</a></li>
+            <li><a href="#notification-settings">Notification Settings</a></li>
+            <li><a href="#backup-restore">Backup and Restore</a></li>
+        </ul>
+    </div>
+
     <div class="content">
-        <div class="sidebar" id="sidebar">
-            <h3>Settings Menu</h3>
-            <ul>
-                <li><a href="#account-settings">Account Settings</a></li>
-                <li><a href="#service-configuration">Service Configuration</a></li>
-                <li><a href="#security-settings">Security Settings</a></li>
-                <li><a href="#notification-settings">Notification Settings</a></li>
-                <li><a href="#backup-restore">Backup and Restore</a></li>
-            </ul>
-            <h3>List Button</h3>
-            <ul>
-                <li><a href="#home">Main &lt;&lt; 回到主页</a></li>
-                <li><a href="#cloud">Cloud &lt;&lt; 账户云端</a></li>
-                <li><a href="#account">Account &lt;&lt; 自己账号</a></li>
-                <li><a href="#contact-us">Contact Us &lt;&lt; 我们公司的联系方式</a></li>
-            </ul>
-        </div>
         <div class="main-content">
             <div id="account-settings" class="form-container">
                 <h2>Account Settings</h2>
                 <label for="api-key">API Key:</label>
-                <input type="text" id="api-key" value="Your API Key" disabled>
-                <label for="quota">Account Quota:</label>
-                <input type="text" id="quota" value="Current Quota" disabled>
-                <label for="new-password">Reset Password:</label>
-                <input type="password" id="new-password" placeholder="New password">
+                <input type="text" id="api-key" placeholder="Your API Key">
+                <label for="account-quota">Account Quota:</label>
+                <input type="text" id="account-quota" placeholder="Current Quota">
+                <label for="reset-password">Reset Password:</label>
+                <input type="password" id="reset-password" placeholder="New password">
                 <label for="confirm-password">Confirm Password:</label>
                 <input type="password" id="confirm-password" placeholder="Confirm new password">
                 <button type="button">Update Account Settings</button>
@@ -251,7 +241,9 @@
             <div id="security-settings" class="form-container">
                 <h2>Security Settings</h2>
                 <label for="two-factor-auth">Two-Factor Authentication:</label>
-                <input type="text" id="two-factor-auth" value="Enabled" disabled>
+                <select id="two-factor-auth">
+                    <option>Enabled</option>
+                </select>
                 <label for="account-roles">Account Roles:</label>
                 <select id="account-roles">
                     <option>Admin</option>
@@ -266,7 +258,9 @@
                     <option>All</option>
                 </select>
                 <label for="sms-notifications">SMS Notifications:</label>
-                <input type="text" id="sms-notifications" value="Enabled" disabled>
+                <select id="sms-notifications">
+                    <option>Enabled</option>
+                </select>
                 <button type="button">Update Notification Settings</button>
             </div>
 
