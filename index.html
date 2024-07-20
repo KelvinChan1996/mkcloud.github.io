@@ -39,18 +39,6 @@
         .dropdown {
             margin: 0;
         }
-        .login-form, .signup-form {
-            display: none; /* 默认隐藏登录和注册表单 */
-            margin-top: 20px;
-        }
-        .body {
-            white-space: pre-wrap; /* 保留换行符 */
-            text-align: center;
-            margin-top: 80px; /* 调整内容顶部间距以避免被导航栏遮挡 */
-        }
-        .error {
-            color: red;
-        }
         .form-container {
             display: flex;
             flex-direction: column;
@@ -67,33 +55,47 @@
             padding: 10px 20px;
             font-size: 16px;
         }
-        .header-links {
-            display: flex;
-            align-items: center;
+        .body {
+            white-space: pre-wrap; /* 保留换行符 */
+            text-align: center;
+            margin-top: 80px; /* 调整内容顶部间距以避免被导航栏遮挡 */
+        }
+        .error {
+            color: red;
+        }
+        .settings {
+            display: none; /* 默认隐藏设置菜单 */
+        }
+        .settings-content {
+            display: none; /* 默认隐藏设置内容 */
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1><a href="https://kelvinchan1996.github.io/mkcloud.github.io/" id="site-title">MKCloud</a></h1>
+        <h1><a href="#" id="site-title">MKCloud</a></h1>
         <div class="header-links">
             <a href="#" id="home-link">Home</a>
             <a href="#" id="info-link">Information</a>
             <a href="#" id="contact-link">Contact Us</a>
-            <div class="dropdown">
-                <label for="language">语言:</label>
-                <select id="language">
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
-                    <option value="cn">中文</option>
-                </select>
-            </div>
-            <a href="#" id="login-link">Login</a>
-            <a href="#" id="signup-link">Signup</a>
+            <a href="#" id="settings-link">Settings</a>
         </div>
     </div>
 
     <div id="content" class="loading">Loading...</div>
+
+    <div class="settings" id="settings-menu">
+        <div class="settings-content" id="language-settings">
+            <label for="language">语言:</label>
+            <select id="language">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="cn">中文</option>
+            </select>
+            <button onclick="saveLanguage()">保存语言</button>
+        </div>
+    </div>
 
     <div class="form-container" id="login-form">
         <h2>登录</h2>
@@ -141,6 +143,12 @@
             loadLanguage(lang);
         }
 
+        function saveLanguage() {
+            const lang = document.getElementById('language').value;
+            localStorage.setItem('selectedLanguage', lang); // 保存语言选择
+            loadLanguage(lang);
+        }
+
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
@@ -157,22 +165,28 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const defaultLang = navigator.language.startsWith('zh') ? 'cn' :
-                                navigator.language.startsWith('es') ? 'es' :
-                                'en';
-            document.getElementById('language').value = defaultLang;
-            loadLanguage(defaultLang);
+            const savedLang = localStorage.getItem('selectedLanguage') || navigator.language.startsWith('zh') ? 'cn' :
+                              navigator.language.startsWith('es') ? 'es' :
+                              'en';
+            document.getElementById('language').value = savedLang;
+            loadLanguage(savedLang);
+
+            document.getElementById('settings-link').addEventListener('click', function(event) {
+                event.preventDefault();
+                const settingsMenu = document.getElementById('settings-menu');
+                settingsMenu.style.display = settingsMenu.style.display === 'none' || settingsMenu.style.display === '' ? 'block' : 'none';
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('signup-form').style.display = 'none';
+            });
 
             document.getElementById('login-link').addEventListener('click', function(event) {
                 event.preventDefault();
-                document.getElementById('login-form').style.display = 'block';
-                document.getElementById('signup-form').style.display = 'none';
+                window.location.href = '#login-form'; // 导航到登录表单
             });
 
             document.getElementById('signup-link').addEventListener('click', function(event) {
                 event.preventDefault();
-                document.getElementById('signup-form').style.display = 'block';
-                document.getElementById('login-form').style.display = 'none';
+                window.location.href = '#signup-form'; // 导航到注册表单
             });
 
             document.getElementById('language').addEventListener('change', setLanguage);
