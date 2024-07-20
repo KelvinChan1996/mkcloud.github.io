@@ -207,11 +207,13 @@
             <li><a href="#security-settings">Security Settings</a></li>
             <li><a href="#notification-settings">Notification Settings</a></li>
             <li><a href="#backup-restore">Backup and Restore</a></li>
+            <li><a href="#theme-settings">Theme Settings</a></li>
         </ul>
     </div>
 
     <div class="content">
         <div class="main-content">
+            <!-- Account Settings -->
             <div id="account-settings" class="form-container">
                 <h2>Account Settings</h2>
                 <label for="api-key">API Key:</label>
@@ -225,6 +227,7 @@
                 <button type="button">Update Account Settings</button>
             </div>
 
+            <!-- Service Configuration -->
             <div id="service-configuration" class="form-container">
                 <h2>Service Configuration</h2>
                 <label for="storage-option">Storage Option:</label>
@@ -238,6 +241,7 @@
                 <button type="button">Update Service Configuration</button>
             </div>
 
+            <!-- Security Settings -->
             <div id="security-settings" class="form-container">
                 <h2>Security Settings</h2>
                 <label for="two-factor-auth">Two-Factor Authentication:</label>
@@ -251,6 +255,7 @@
                 <button type="button">Update Security Settings</button>
             </div>
 
+            <!-- Notification Settings -->
             <div id="notification-settings" class="form-container">
                 <h2>Notification Settings</h2>
                 <label for="email-notifications">Email Notifications:</label>
@@ -264,6 +269,7 @@
                 <button type="button">Update Notification Settings</button>
             </div>
 
+            <!-- Backup and Restore -->
             <div id="backup-restore" class="form-container">
                 <h2>Backup and Restore</h2>
                 <label for="backup-schedule">Backup Schedule:</label>
@@ -275,6 +281,20 @@
                     <option>Latest</option>
                 </select>
                 <button type="button">Update Backup and Restore</button>
+            </div>
+
+            <!-- Theme Settings -->
+            <div id="theme-settings" class="form-container">
+                <h2>Theme Settings</h2>
+                <label for="theme-color">Theme Color:</label>
+                <input type="color" id="theme-color" value="#007bff">
+                <label for="theme-font">Theme Font:</label>
+                <select id="theme-font">
+                    <option>Arial</option>
+                    <option>Verdana</option>
+                    <option>Times New Roman</option>
+                </select>
+                <button type="button">Update Theme Settings</button>
             </div>
         </div>
     </div>
