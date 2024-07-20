@@ -54,22 +54,6 @@
             display: none; /* 默认隐藏设置内容 */
             margin-top: 20px;
         }
-        .form-container {
-            display: none; /* 默认隐藏登录和注册表单 */
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .form-container input {
-            margin-bottom: 10px;
-            padding: 8px;
-            font-size: 16px;
-            width: 200px;
-        }
-        .form-container button {
-            padding: 10px 20px;
-            font-size: 16px;
-        }
     </style>
 </head>
 <body>
@@ -97,21 +81,6 @@
             </select>
             <button onclick="saveLanguage()">保存语言</button>
         </div>
-    </div>
-
-    <div class="form-container" id="login-form">
-        <h2>登录</h2>
-        <input type="text" id="username" placeholder="用户名">
-        <input type="password" id="password" placeholder="密码">
-        <button onclick="login()">登录</button>
-    </div>
-
-    <div class="form-container" id="signup-form">
-        <h2>注册</h2>
-        <input type="text" id="signup-username" placeholder="用户名">
-        <input type="email" id="signup-email" placeholder="电子邮箱">
-        <input type="password" id="signup-password" placeholder="密码">
-        <button onclick="signup()">注册</button>
     </div>
 
     <script>
@@ -151,19 +120,10 @@
             loadLanguage(lang);
         }
 
-        function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            // 执行登录逻辑（例如，服务器验证）
-            alert(`登录用户名: ${username}`);
-        }
-
-        function signup() {
-            const username = document.getElementById('signup-username').value;
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            // 执行注册逻辑（例如，服务器验证）
-            alert(`注册用户名: ${username}\n电子邮箱: ${email}`);
+        function showForm(formId) {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById(formId).style.display = 'block';
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -177,20 +137,16 @@
                 event.preventDefault();
                 const settingsMenu = document.getElementById('settings-menu');
                 settingsMenu.style.display = settingsMenu.style.display === 'none' || settingsMenu.style.display === '' ? 'block' : 'none';
-                document.getElementById('login-form').style.display = 'none';
-                document.getElementById('signup-form').style.display = 'none';
             });
 
             document.getElementById('login-link').addEventListener('click', function(event) {
                 event.preventDefault();
-                document.getElementById('login-form').style.display = 'block';
-                document.getElementById('signup-form').style.display = 'none';
+                showForm('login-form');
             });
 
             document.getElementById('signup-link').addEventListener('click', function(event) {
                 event.preventDefault();
-                document.getElementById('signup-form').style.display = 'block';
-                document.getElementById('login-form').style.display = 'none';
+                showForm('signup-form');
             });
 
             document.getElementById('language').addEventListener('change', setLanguage);
