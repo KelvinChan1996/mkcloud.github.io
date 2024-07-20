@@ -30,6 +30,8 @@
         }
         .sidebar h2 {
             margin-top: 0;
+            font-size: 24px;
+            color: #fff;
         }
         .sidebar a {
             display: block;
@@ -64,14 +66,12 @@
             font-size: 20px;
             cursor: pointer;
         }
-        .header a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
+        .header input {
+            padding: 10px;
             font-size: 16px;
-        }
-        .header a:hover {
-            text-decoration: underline;
+            border: none;
+            border-radius: 5px;
+            width: 300px;
         }
         .content {
             margin-top: 60px; /* Adjusted for the fixed header */
@@ -87,18 +87,13 @@
         .search-bar {
             margin-bottom: 20px;
         }
-        .search-bar input {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
         .settings-layout {
             display: flex;
+            flex-direction: row;
+            gap: 20px;
         }
         .settings-menu {
-            width: 250px;
+            flex: 1;
             background-color: #f4f4f4;
             padding: 10px;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
@@ -106,6 +101,7 @@
         }
         .settings-menu h3 {
             margin-top: 0;
+            font-size: 20px;
         }
         .settings-menu a {
             display: block;
@@ -120,12 +116,27 @@
             background-color: #ddd;
         }
         .settings-content {
-            flex: 1;
+            flex: 3;
             padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .settings-content h4 {
             margin-top: 0;
             color: #333;
+        }
+        .settings-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .settings-table th, .settings-table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .settings-table th {
+            background-color: #f4f4f4;
         }
         .settings-section {
             margin-bottom: 20px;
@@ -190,6 +201,7 @@
 
     <div class="header">
         <button id="list-button">☰</button>
+        <input type="text" id="search-settings" placeholder="Search settings...">
         <div>
             <a href="index.html">Home</a>
             <a href="info.html">Information</a>
@@ -201,13 +213,9 @@
     </div>
 
     <div class="content">
-        <div class="search-bar">
-            <input type="text" id="search-settings" placeholder="Search settings...">
-        </div>
-        
         <div class="settings-layout">
             <div class="settings-menu">
-                <h3>Settings</h3>
+                <h3>Settings Menu</h3>
                 <a href="#account">Account Settings</a>
                 <a href="#service">Service Configuration</a>
                 <a href="#security">Security Settings</a>
@@ -217,81 +225,118 @@
             <div class="settings-content">
                 <div id="account" class="settings-section">
                     <h4>Account Settings</h4>
-                    <label for="api-key">API Key:</label>
-                    <input type="text" id="api-key" placeholder="Your API Key">
-                    
-                    <label for="account-quota">Account Quota:</label>
-                    <input type="text" id="account-quota" placeholder="Current Quota">
-                    
-                    <label for="reset-password">Reset Password:</label>
-                    <button type="button" onclick="resetPassword()">Reset Password</button>
+                    <table class="settings-table">
+                        <tr>
+                            <th>API Key</th>
+                            <td><input type="text" id="api-key" placeholder="Your API Key"></td>
+                        </tr>
+                        <tr>
+                            <th>Account Quota</th>
+                            <td><input type="text" id="account-quota" placeholder="Current Quota"></td>
+                        </tr>
+                        <tr>
+                            <th>Reset Password</th>
+                            <td><button type="button" onclick="resetPassword()">Reset Password</button></td>
+                        </tr>
+                    </table>
                 </div>
                 
                 <div id="service" class="settings-section">
                     <h4>Service Configuration</h4>
-                    <label for="storage-option">Storage Option:</label>
-                    <select id="storage-option">
-                        <option value="standard">Standard</option>
-                        <option value="archival">Archival</option>
-                        <option value="premium">Premium</option>
-                    </select>
-                    
-                    <label for="compute-resources">Compute Resources:</label>
-                    <select id="compute-resources">
-                        <option value="small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                    </select>
+                    <table class="settings-table">
+                        <tr>
+                            <th>Storage Option</th>
+                            <td>
+                                <select id="storage-option">
+                                    <option value="standard">Standard</option>
+                                    <option value="archival">Archival</option>
+                                    <option value="premium">Premium</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Compute Resources</th>
+                            <td>
+                                <select id="compute-resources">
+                                    <option value="small">Small</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="large">Large</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 
                 <div id="security" class="settings-section">
                     <h4>Security Settings</h4>
-                    <label for="ip-whitelist">IP Whitelist:</label>
-                    <input type="text" id="ip-whitelist" placeholder="Enter IP addresses separated by commas">
-                    
-                    <label for="permissions">Permissions:</label>
-                    <select id="permissions">
-                        <option value="admin">Admin</option>
-                        <option value="user">User</option>
-                        <option value="guest">Guest</option>
-                    </select>
+                    <table class="settings-table">
+                        <tr>
+                            <th>Two-Factor Authentication</th>
+                            <td><input type="checkbox" id="two-factor-auth"></td>
+                        </tr>
+                        <tr>
+                            <th>Account Roles</th>
+                            <td>
+                                <select id="account-roles">
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                    <option value="guest">Guest</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 
                 <div id="notification" class="settings-section">
                     <h4>Notification Settings</h4>
-                    <label for="email-notifications">Email Notifications:</label>
-                    <input type="checkbox" id="email-notifications">
-                    
-                    <label for="sms-notifications">SMS Notifications:</label>
-                    <input type="checkbox" id="sms-notifications">
+                    <table class="settings-table">
+                        <tr>
+                            <th>Email Notifications</th>
+                            <td><input type="checkbox" id="email-notifications"></td>
+                        </tr>
+                        <tr>
+                            <th>SMS Notifications</th>
+                            <td><input type="checkbox" id="sms-notifications"></td>
+                        </tr>
+                    </table>
                 </div>
                 
                 <div id="backup" class="settings-section">
                     <h4>Backup and Restore</h4>
-                    <label for="backup-frequency">Backup Frequency:</label>
-                    <select id="backup-frequency">
-                        <option value="daily">Daily</option>
-                        <option value="weekly">Weekly</option>
-                        <option value="monthly">Monthly</option>
-                    </select>
-                    
-                    <label for="restore-options">Restore Options:</label>
-                    <select id="restore-options">
-                        <option value="latest">Latest Backup</option>
-                        <option value="custom">Custom Backup</option>
-                    </select>
+                    <table class="settings-table">
+                        <tr>
+                            <th>Backup Frequency</th>
+                            <td>
+                                <select id="backup-frequency">
+                                    <option value="daily">Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Restore Options</th>
+                            <td>
+                                <select id="restore-options">
+                                    <option value="latest">Latest Backup</option>
+                                    <option value="custom">Custom Backup</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="footer">
-            <p>&copy; 2024 MKCloud. All rights reserved. <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
-        </div>
+    <div class="footer">
+        <p>&copy; 2024 MKCloud. All rights reserved. <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
     </div>
 
     <script>
         document.getElementById('list-button').addEventListener('click', function() {
             document.querySelector('.sidebar').classList.toggle('active');
+            document.querySelector('.header').classList.toggle('expanded');
         });
 
         function resetPassword() {
